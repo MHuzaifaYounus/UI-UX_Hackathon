@@ -49,7 +49,7 @@ const ProductGrid = () => {
       {/* Product Grid */}
       <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
         {products.map((product, index) => (
-          <div key={index} className="border border-gray-200 rounded ">
+          <div key={index} className="border border-gray-200 rounded cursor-pointer">
             <div className="relative">
               <Image
                 src={`${product.image}`}

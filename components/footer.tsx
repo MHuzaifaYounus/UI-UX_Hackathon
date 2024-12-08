@@ -13,7 +13,7 @@ const Footer = () => {
                             <span>St</span>ill You Need Our Support?
                         </h2>
                         <p className="text-gray-400 mt-2">
-                            Dont wait; make a smart & logical quote here. It's pretty easy.
+                            Dont wait; make a smart & logical quote here. Its pretty easy.
                         </p>
                     </div>
                     <div className="mt-4">

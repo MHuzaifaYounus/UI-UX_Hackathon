@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -6,14 +6,14 @@ import {
     BreadcrumbList,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { Slash } from 'lucide-react'
-import Link from 'next/link'
+import { Slash } from "lucide-react" 
+import Link from "next/link"
 
 const Error = () => {
     return (
         <div>
             <div className="hero w-full h-[320px] menu_bg flex flex-col items-center justify-center ">
-                <h1 className='pb-5 font-bold text-5xl text-white'>404 Error</h1>
+                <h1 className="pb-5 font-bold text-5xl text-white">404 Error</h1>
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem >
@@ -22,7 +22,7 @@ const Error = () => {
                         <BreadcrumbSeparator>
                             <Slash />
                         </BreadcrumbSeparator>
-                        <BreadcrumbItem className='text-white'>
+                        <BreadcrumbItem className="text-white">
                             <BreadcrumbLink href="/">404 Error</BreadcrumbLink>
                         </BreadcrumbItem>
                     </BreadcrumbList>
@@ -35,7 +35,7 @@ const Error = () => {
                     Oops! Looks like something went wrong
                 </p>
                 <p className="text-gray-500 mb-6">
-                    Page cannot be found! We'll have it figured out in no time. <br />
+                    Page cannot be found! We&apos;ll have it figured out in no time. <br />
                     Meanwhile, check out these fresh ideas:
                 </p>
                 <button

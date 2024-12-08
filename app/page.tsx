@@ -34,7 +34,7 @@ export default function Home() {
 
 
           <div className={`text-primary_color text-3xl mb-2 max-sm:text-2xl ${greatVibes.className}`}>
-            It's Quick & Amusing!
+            Its Quick & Amusing!
           </div>
 
 
