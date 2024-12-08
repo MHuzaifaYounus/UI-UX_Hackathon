@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+
 
 
 
@@ -80,12 +82,12 @@ const BlogPosts = () => {
                         <p className="text-gray-600 text-sm">{post.description}</p>
 
                         {/* Read More */}
-                        <a
-                            href={post.link}
+                        <Link
+                            href={`/blog/${index}`}
                             className="self-start px-4 py-2 bg-primary_color text-white rounded hover:bg-primary_color"
                         >
                             Read More
-                        </a>
+                        </Link>
                     </div>
                 </div>
             ))}
