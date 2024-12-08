@@ -49,7 +49,7 @@ export default function Home() {
 
 
           <button className="bg-primary_color text-white mt-6 px-6 py-2 rounded-[30px] hover:bg-primary_color transition">
-            See Menu
+            <Link href={"/menu"}>See Menu</Link>
           </button>
 
         </div>

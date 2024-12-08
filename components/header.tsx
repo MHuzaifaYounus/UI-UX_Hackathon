@@ -1,8 +1,16 @@
-import React from "react";
+"use client"
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+
 const Header: React.FC = () => {
+    const [isNavbar, setIsNavbar] = useState(false)
+    
+    function showNavBar():void {
+        setIsNavbar(!isNavbar)
+        
+    }
     return (
         <header className="bg-black text-white px-6">
             <div className="container mx-auto flex items-center justify-between h-[90px]">
@@ -65,6 +73,7 @@ const Header: React.FC = () => {
                         />
                     </Link>
                     <button
+                    onClick={() => {showNavBar() }}
                         className="block lg:hidden text-primary_color"
                         aria-label="Toggle Menu"
                     >
@@ -87,8 +96,8 @@ const Header: React.FC = () => {
             </div>
 
             {/* Mobile Navigation */}
-            <nav className="hidden mt-4">
-                <ul className="flex flex-col space-y-2 text-center">
+            {isNavbar && <nav className="mt-4">
+                <ul className="flex flex-col space-y-4 text-center">
                     <li className="hover:text-primary_color">
                         <Link href="/">Home</Link>
                     </li>
@@ -111,7 +120,7 @@ const Header: React.FC = () => {
                         <Link href="/contact">Contact</Link>
                     </li>
                 </ul>
-            </nav>
+            </nav>}
         </header>
     );
 };
