@@ -6,17 +6,15 @@ import {
   CardContent,
   CardHeader,
 } from "@/components/ui/card"
-import Menu from "@/components/menu";
 import { Button } from "@/components/ui/button";
 import TestimonialCard from "@/components/testimonal";
 import Link from "next/link";
-
-
-
+import MenuSection from "@/components/MenuSection";
 
 const greatVibes = Great_Vibes({ weight: ["400"], subsets: ["latin"] })
 
 export default function Home() {
+
 
   return (
     <div className="bg-black">
@@ -118,7 +116,7 @@ export default function Home() {
 
 
           <button className="bg-primary_color text-white mt-6 px-6 py-2 rounded-[30px] hover:bg-primary_color transition w-[190px] h-[60px] max-sm:h-[40px] max-sm:w-[130px]">
-            Read More
+            <Link href={"/about"}>Read More</Link>
           </button>
 
         </div>
@@ -379,44 +377,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="section6 w-[80%] min-h-[850px] flex flex-col justify-between mb-10 mt-20 text-white m-auto items-center max-sm:w-[90%]">
-        <div className={`text-primary_color text-3xl mb-2 max-sm:text-2xl ${greatVibes.className}`}>
-          Choos & pick
-        </div>
-        <h1 className="text-4xl font-bold leading-tight max-sm:text-3xl max-lg:pt-10">
-          <span className="text-primary_color">Fr</span>om Our Menu
-
-        </h1>
-        <div className="w-[80%] flex justify-center max-lg:pt-10 max-sm:w-full font-medium text-xl max-sm:text-sm max-lg:w-full max-lg:flex-col items-center ">
-          <ul className="flex w-[50%] justify-evenly  max-sm:w-[90%] ">
-            <li className=" active">BreakFast</li>
-            <li className="">Lunch</li>
-            <li className="">Dinner</li>
-            <li className="">Desert</li>
-          </ul>
-          <ul className="flex w-[30%] justify-between max-lg:pt-4 max-sm:w-[50%]">
-            <li className="">Soups</li>
-            <li className="">Snacks</li>
-            <li className="">Drink</li>
-          </ul>
-        </div>
-
-        <div className="flex w-full justify-between items-center max-lg:flex-col ">
-          <div className="img flex justify-center items-center h-[406px] w-[35%] max-sm:w-full">
-
-            <Image
-              src={"/img/frame6side.svg"}
-              alt="Search Icon"
-              width={366}
-              height={362}
-            />
-          </div>
-          <div className="list flex max-sm:w-full">
-            <Menu />
-          </div>
-        </div>
-
-      </div>
+      {/* section 6 */}
+      <MenuSection />
 
       <div className="section7 w-[80%] min-h-[489px] flex flex-col justify-between pb-10 pt-10 text-white m-auto items-center">
         <div className={`text-primary_color text-3xl mb-2 max-sm:text-2xl ${greatVibes.className}`}>
@@ -474,21 +436,11 @@ export default function Home() {
           <span className="text-primary_color">Wh</span>at our client are saying
 
         </h1>
-        <div className="">
-          <TestimonialCard />
-        </div>
 
-        <div className="w-full flex justify-center pt-20">
-          <div className="flex justify-center mt-6 space-x-2">
-            {[...Array(4)].map((_, i) => (
-              <div
-                key={i}
-                className={`w-3 h-3 rounded-full ${i === 0 ? "bg-yellow-500" : "bg-yellow-900"
-                  }`}
-              ></div>
-            ))}
-          </div>
-        </div>
+        <TestimonialCard />
+
+
+
 
       </div>
 
