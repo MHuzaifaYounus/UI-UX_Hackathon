@@ -2,8 +2,6 @@ import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
 
-
-
 const Sidebar = () => {
     return (
         <div className="w-[312px] bg-white p-4 border border-gray-200 max-lg:hidden">
@@ -12,6 +10,7 @@ const Sidebar = () => {
                 <input
                     type="text"
                     placeholder="Search Product"
+                    id="searchBox"
                     className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-orange-300"
                 />
                 <Button className="bg-primary_color h-[46] rounded-s-none"> <Image
@@ -42,9 +41,11 @@ const Sidebar = () => {
             {/* Advertisement */}
             <div className="mb-6 bg-gray-100  rounded shadow-md text-center">
                 <div className="relative">
-                    <img
+                    <Image
                         src="/img/sidebarad.svg"
                         alt="Classic Restaurant"
+                        width={100}
+                        height={100}
                         className="w-full h-auto rounded"
                     />
                     <div className="absolute top-5 left-5 bg-opacity-40 text-white flex flex-col justify-center items-start rounded">
@@ -75,7 +76,7 @@ const Sidebar = () => {
                         <span>To $800</span>
                     </div>
                 </div>
-             
+
             </div>
 
             {/* Latest Products */}
@@ -87,9 +88,11 @@ const Sidebar = () => {
                             key={product}
                             className="flex items-center space-x-4 border-b pb-2"
                         >
-                            <img
-                                src="/img/shop9.svg" // Replace with product image URLs
+                            <Image
+                                src="/img/shop9.svg"
                                 alt={product}
+                                width={48}
+                                height={48}
                                 className="w-12 h-12 rounded"
                             />
                             <div>

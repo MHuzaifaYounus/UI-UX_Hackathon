@@ -9,6 +9,7 @@ import {
 import { Slash } from 'lucide-react'
 import BlogPosts from '@/components/blogposts'
 import SocialMediaIcons from '@/components/socialIcons'
+import Image from 'next/image'
 
 
 
@@ -48,9 +49,11 @@ const page = () => {
 
                     {/* Profile Section */}
                     <div className="text-center border border-gray-300 rounded p-4">
-                        <img
+                        <Image
                             src="/img/bloguser.svg" // Replace with actual profile image
                             alt="Profile"
+                            height={80}
+                            width={80}
                             className="w-20 h-20 mx-auto rounded-full"
                         />
                         <h3 className="mt-2 font-semibold">Prince Miyako</h3>
@@ -80,9 +83,11 @@ const page = () => {
                         <div className="space-y-4">
                             {[...Array(4)].map((_, index) => (
                                 <div key={index} className="flex items-center space-x-4">
-                                    <img
+                                    <Image
                                         src="/img/shop9.svg" // Replace with actual post images
                                         alt="Post"
+                                        height={48}
+                                        width={48}
                                         className="w-12 h-12 rounded"
                                     />
                                     <div>
@@ -145,10 +150,12 @@ const page = () => {
                         <h3 className="font-semibold text-lg mb-3">Photo Gallery</h3>
                         <div className="grid grid-cols-3 gap-2">
                             {[...Array(6)].map((_, index) => (
-                                <img
+                                <Image
                                     key={index}
                                     src="/img/shop14.svg" // Replace with gallery images
                                     alt="Gallery"
+                                    height={80}
+                                    width={80}
                                     className="w-20 h-20 rounded object-cover"
                                 />
                             ))}

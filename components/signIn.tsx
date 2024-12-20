@@ -36,7 +36,7 @@ const SignInForm = () => {
                         </label>
                         <div className="flex items-center border border-gray-300 rounded-md px-3 py-2">
                             <span className="material-icons text-gray-400 mr-2"><Image
-                                src="/icons/lock.svg"
+                                src="/icons/pass.svg"
                                 alt="user"
                                 width={24}
                                 height={24}

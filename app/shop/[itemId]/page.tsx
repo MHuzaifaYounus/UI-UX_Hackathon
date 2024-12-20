@@ -215,9 +215,11 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
                                 key={index}
                                 className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm"
                             >
-                                <img
+                                <Image
                                     src={product.image}
                                     alt={product.title}
+                                    height={267}
+                                    width={267}
                                     className="w-full h-[267px] object-cover"
                                 />
                                 <div className="p-4">

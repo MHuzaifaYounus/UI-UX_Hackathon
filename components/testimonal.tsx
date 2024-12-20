@@ -55,93 +55,93 @@ const TestimonialCard = () => {
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="w-full max-md:w-[85%] m-auto"
+      className="w-full max-md:w-[85%] m-auto "
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
-      
+
     >
-      <CarouselContent>
+      <CarouselContent >
         {Array.from({ length: 4 }).map((_, index) => (
-          <CarouselItem key={index}>
-            <div className="p-1 max-md:p-0">
-              <Card className="bg-transparent border-none">
-                <CardContent className="flex justify-center items-center bg-transparent max-md:p-0">
-                  <div className="relative bg-white text-black rounded-lg mt-20 shadow-lg w-[70%] px-20 py-10 max-md:w-full max-sm:px-5 max-sm:py-5">
-                    {/* Profile Image */}
-                    <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 max-sm:w-[90px]  max-sm:h-[90px] ">
-                      <Image
-                        src={testimonialData[index].profile}
-                        alt="Profile"
-                        width={130}
-                        height={130}
-                        className="rounded-full"
+          <CarouselItem key={index} >
 
-                      />
-                    </div>
+            <Card className="bg-transparent border-none shadow-none">
+              <CardContent className="flex justify-center items-center bg-transparent max-md:p-0">
+                <div className="relative bg-white text-black rounded-lg mt-20 shadow-lg w-[70%] px-20 py-10 max-md:w-full max-sm:px-5 max-sm:py-5">
+                  {/* Profile Image */}
+                  <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 max-sm:w-[90px]  max-sm:h-[90px] ">
+                    <Image
+                      src={testimonialData[index].profile}
+                      alt="Profile"
+                      width={130}
+                      height={130}
+                      className="rounded-full"
 
-                    {/* Quote Icon */}
-                    <div className="text-yellow-500 text-4xl text-center mt-12  max-sm:mt-5">❝</div>
+                    />
+                  </div>
 
-                    {/* Testimonial Content */}
-                    <p className="text-center text-gray-600 mt-4 max-sm:text-sm">
-                      {testimonialData[index].comment}
-                    </p>
+                  {/* Quote Icon */}
+                  <div className="text-yellow-500 text-4xl text-center mt-12  max-sm:mt-5">❝</div>
 
-                    {/* Rating */}
-                    <div className="flex justify-center mt-4">
-                      <div className="flex space-x-1 text-yellow-400">
-                        {[...Array(4)].map((_, i) => (
-                          <svg
-                            key={i}
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                            className="w-6 h-6"
-                          >
-                            <path d="M12 .587l3.668 7.429 8.211 1.194-5.938 5.789 1.4 8.183-7.341-3.86-7.34 3.86 1.399-8.183-5.939-5.789 8.211-1.194z" />
-                          </svg>
-                        ))}
-                        {/* Empty Star */}
+                  {/* Testimonial Content */}
+                  <p className="text-center text-gray-600 mt-4 max-sm:text-sm">
+                    {testimonialData[index].comment}
+                  </p>
+
+                  {/* Rating */}
+                  <div className="flex justify-center mt-4">
+                    <div className="flex space-x-1 text-yellow-400">
+                      {[...Array(4)].map((_, i) => (
                         <svg
+                          key={i}
                           xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          stroke="currentColor"
+                          fill="currentColor"
                           viewBox="0 0 24 24"
                           className="w-6 h-6"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                          />
+                          <path d="M12 .587l3.668 7.429 8.211 1.194-5.938 5.789 1.4 8.183-7.341-3.86-7.34 3.86 1.399-8.183-5.939-5.789 8.211-1.194z" />
                         </svg>
-                      </div>
+                      ))}
+                      {/* Empty Star */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                        />
+                      </svg>
                     </div>
-
-                    {/* Name and Title */}
-                    <div className="text-center mt-4">
-                      <h3 className="text-lg font-semibold">{testimonialData[index].name}</h3>
-                      <p className="text-sm text-gray-500">{testimonialData[index].profession}</p>
-                    </div>
-
-
-
                   </div>
-                </CardContent>
-              </Card>
-            </div>
+
+                  {/* Name and Title */}
+                  <div className="text-center mt-4">
+                    <h3 className="text-lg font-semibold">{testimonialData[index].name}</h3>
+                    <p className="text-sm text-gray-500">{testimonialData[index].profession}</p>
+                  </div>
+
+
+
+                </div>
+              </CardContent>
+            </Card>
+
           </CarouselItem>
         ))}
       </CarouselContent>
+
       <div onClick={() => { setCurrent(prev => (prev === 0 ? prev + 3 : prev - 1)) }}>
         <CarouselPrevious className="bg-transparent" />
       </div>
-      <div onClick={() => {setCurrent(prev => (prev === 3 ? prev - 3 : prev + 1)) }} >
+      <div onClick={() => { setCurrent(prev => (prev === 3 ? prev - 3 : prev + 1)) }} >
         <CarouselNext className="bg-transparent" />
       </div>
-
-      <div className="w-full flex justify-center pt-20">
+      <div className="w-full flex justify-center pt-4">
         <div className="flex justify-center mt-6 space-x-2">
           {[...Array(4)].map((_, i) => (
             <div

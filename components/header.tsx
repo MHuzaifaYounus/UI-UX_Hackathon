@@ -48,7 +48,7 @@ const Header: React.FC = () => {
 
                 {/* Icons */}
                 <div className="flex items-center space-x-6 max-sm:space-x-3">
-                    <Link href={"/search"}>
+                    <Link href={"/shop#searchBox"}>
                         <Image
                             src={"/icons/search.svg"}
                             alt="Search Icon"

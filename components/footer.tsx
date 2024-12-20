@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import SocialMediaIcons from "./socialIcons";
+import Link from "next/link";
 
 
 const Footer = () => {
@@ -20,7 +21,7 @@ const Footer = () => {
                         <input
                             type="email"
                             placeholder="Enter Your Email"
-                            className="w-full md:w-auto p-2 rounded-s-md text-white bg-primary_color"
+                            className="w-full md:w-auto p-2 rounded-s-md text-white bg-primary_color placeholder:text-gray-200"
                         />
                         <button className="mt-2 md:mt-0  bg-white text-primary_color py-2 px-4 rounded-e-md ">
                             Subscribe Now
@@ -61,12 +62,12 @@ const Footer = () => {
                     <div className="flex flex-col items-center">
                         <h2 className="text-white font-bold text-2xl">Useful Links</h2>
                         <ul className="mt-4 text-gray-400 text-lg space-y-4">
-                            <li>About</li>
+                            <li><Link href={"/about"}>About</Link></li>
                             <li>News</li>
-                            <li>Partners</li>
-                            <li>Team</li>
-                            <li>Menu</li>
-                            <li>Contacts</li>
+                            <li><Link href={"/chefs"}>Partners</Link></li>
+                            <li><Link href={"/chefs"}>Team</Link></li>
+                            <li><Link href={"/menu"}>Menu</Link></li>
+                            <li><Link href={"/contact"}>Contact Us</Link></li>
                         </ul>
                     </div>
 
@@ -74,7 +75,7 @@ const Footer = () => {
                     <div className="flex flex-col items-center">
                         <h2 className="text-white font-bold text-2xl">Help?</h2>
                         <ul className="mt-4 text-gray-400 text-lg space-y-4 text-center">
-                            <li>FAQ</li>
+                            <li><Link href={"/faqs"}>FAQS</Link></li>
                             <li>Terms & Conditions</li>
                             <li>Reporting</li>
                             <li>Documentation</li>
@@ -86,48 +87,54 @@ const Footer = () => {
                     <div className="flex flex-col items-center">
                         <h2 className="text-white font-bold text-2xl">Recent Post</h2>
                         <ul className="mt-4 space-y-4">
-                            <li className="flex items-center">
-                                <div className="w-16 h-14 bg-gray-500 rounded-md mr-4">
-                                    <Image
-                                        src={"/img/frame101.svg"}
-                                        alt="Search Icon"
-                                        width={100}
-                                        height={100}
-                                    />
-                                </div>
-                                <div>
-                                    <p className="text-gray-400 text-sm">20 February 2022</p>
-                                    <p className="text-white">Keep Your Business</p>
-                                </div>
-                            </li>
-                            <li className="flex items-center">
-                                <div className="w-16 h-14 bg-gray-500 rounded-md mr-4">
-                                    <Image
-                                        src={"/img/frame101.svg"}
-                                        alt="Search Icon"
-                                        width={100}
-                                        height={100}
-                                    />
-                                </div>
-                                <div>
-                                    <p className="text-gray-400 text-sm">20 February 2022</p>
-                                    <p className="text-white">Keep Your Business</p>
-                                </div>
-                            </li>
-                            <li className="flex items-center">
-                                <div className="w-16 h-14 bg-gray-500 rounded-md mr-4">
-                                    <Image
-                                        src={"/img/frame101.svg"}
-                                        alt="Search Icon"
-                                        width={100}
-                                        height={100}
-                                    />
-                                </div>
-                                <div>
-                                    <p className="text-gray-400 text-sm">20 February 2022</p>
-                                    <p className="text-white">Keep Your Business</p>
-                                </div>
-                            </li>
+                            <Link href={"/blog/0"} className="flex">
+                                <li className="flex items-center">
+                                    <div className="w-16 h-14 bg-gray-500 rounded-md mr-4">
+                                        <Image
+                                            src={"/img/frame101.svg"}
+                                            alt="Search Icon"
+                                            width={100}
+                                            height={100}
+                                        />
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-400 text-sm">20 February 2022</p>
+                                        <p className="text-white">Keep Your Business</p>
+                                    </div>
+                                </li>
+                            </Link>
+                            <Link href={"/blog/1"} className="flex">
+                                <li className="flex items-center">
+                                    <div className="w-16 h-14 bg-gray-500 rounded-md mr-4">
+                                        <Image
+                                            src={"/img/frame101.svg"}
+                                            alt="Search Icon"
+                                            width={100}
+                                            height={100}
+                                        />
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-400 text-sm">20 February 2022</p>
+                                        <p className="text-white">Keep Your Business</p>
+                                    </div>
+                                </li>
+                            </Link>
+                            <Link href={"/blog/2"} className="flex">
+                                <li className="flex items-center">
+                                    <div className="w-16 h-14 bg-gray-500 rounded-md mr-4">
+                                        <Image
+                                            src={"/img/frame101.svg"}
+                                            alt="Search Icon"
+                                            width={100}
+                                            height={100}
+                                        />
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-400 text-sm">20 February 2022</p>
+                                        <p className="text-white">Keep Your Business</p>
+                                    </div>
+                                </li>
+                            </Link>
 
                         </ul>
                     </div>

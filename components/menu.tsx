@@ -1,5 +1,5 @@
+import Image from "next/image";
 import React from "react";
-
 const menuItems = [
   [
     {
@@ -420,9 +420,11 @@ const Menu = ({ activeMenu }: { activeMenu?: number }) => {
               key={subIndex}
               className="flex items-center rounded-lg p-4 shadow-lg"
             >
-              <img
+              <Image
                 src={subItem.image}
                 alt={subItem.name}
+                width={80}
+                height={80}
                 className="w-20 h-20 rounded-md object-cover mr-4"
               />
               <div>

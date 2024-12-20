@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useState }  from 'react'
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -11,9 +12,11 @@ import Image from 'next/image'
 import { Great_Vibes } from "next/font/google"
 import TestimonialCard from '@/components/testimonal'
 import Menu from '@/components/menu'
+
 const greatVibes = Great_Vibes({ weight: ["400"], subsets: ["latin"] })
 
-const page = () => {
+const AboutPage = () => {
+    const [activeMenu, setActiveMenu] = useState<number>(0)
     return (
         <div>
             <div className="hero w-full h-[320px] menu_bg flex flex-col items-center justify-center ">
@@ -37,21 +40,27 @@ const page = () => {
 
                 <div className="left flex flex-col md:flex-row items-center justify-center p-4 space-y-4 md:space-y-0 md:space-x-4 w-[50%] max-lg:w-full">
                     <div className="flex-1">
-                        <img
-                            src="/img/about1.svg" // Replace with your taco image URL
+                        <Image
+                            src="/img/about1.svg" 
                             alt="Tacos"
+                            height={536}
+                            width={100}
                             className="rounded-lg object-cover w-full h-[536px]"
                         />
                     </div>
                     <div className="flex flex-col flex-1 space-y-4">
-                        <img
+                        <Image
                             src="/img/about2.svg" // Replace with your dipping image URL
                             alt="Dipping Sauce"
+                            height={271}
+                            width={100}
                             className="rounded-lg object-cover w-full h-[271px]"
                         />
-                        <img
+                        <Image
                             src="/img/about3.svg" // Replace with your salad image URL
                             alt="Salad"
+                            height={382}
+                            width={100}
                             className="rounded-lg object-cover w-full h-[382px]"
                         />
                     </div>
@@ -105,9 +114,11 @@ const page = () => {
 
                 {/* Image Section */}
                 <div className="flex justify-center w-full">
-                    <img
+                    <Image
                         src="/img/aboutsec2.svg"
                         alt="Why Choose Us"
+                        height={200}
+                        width={100}
                         className=" object-cover w-full max-md:h-[200px]"
                     />
                 </div>
@@ -190,9 +201,11 @@ const page = () => {
                         >
                             {/* Image Section */}
                             <div className="relative">
-                                <img
+                                <Image
                                     src="/img/aboutsec3.svg" // Replace with actual image URL
                                     alt={member.name}
+                                    height={310}
+                                    width={100}
                                     className="w-full h-[310px] object-cover"
                                 />
                                 {/* Social Icons */}
@@ -257,47 +270,35 @@ const page = () => {
                     <TestimonialCard />
                 </div>
 
-                <div className="w-full flex justify-center pt-20">
-                    <div className="flex justify-center mt-6 space-x-2">
-                        {[...Array(4)].map((_, i) => (
-                            <div
-                                key={i}
-                                className={`w-3 h-3 rounded-full ${i === 0 ? "bg-yellow-500" : "bg-yellow-900"
-                                    }`}
-                            ></div>
-                        ))}
-                    </div>
-                </div>
+
 
             </div>
 
             <div className="section5  w-[80%] min-h-[850px] flex flex-col justify-between mb-10 mt-20  m-auto items-center max-sm:w-[90%]">
-                <div className={`text-primary_color text-3xl mb-2 max-sm:text-2xl ${greatVibes.className}`}>
-                    Choos & pick
+                <div className=" text-center max-w-[428px]">
+                    <h1 className="text-4xl font-bold leading-tight max-sm:text-3xl max-lg:pt-10">
+                        <span className="text-primary_color">Ou</span>r Food Menu
+                    </h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Varius sed pharetra dictum neque massa congue</p>
                 </div>
-                <h1 className="text-4xl font-bold leading-tight max-sm:text-3xl max-lg:pt-10">
-                    <span className="text-primary_color">Ou</span>r Food Menu
-
-                </h1>
                 <div className="w-[80%] flex justify-center max-lg:pt-10 max-sm:w-full font-medium text-xl max-sm:text-sm max-lg:w-full max-lg:flex-col items-center ">
                     <ul className="flex w-[50%] justify-evenly  max-sm:w-[90%] ">
-                        <li className=" active">BreakFast</li>
-                        <li className="">Lunch</li>
-                        <li className="">Dinner</li>
-                        <li className="">Desert</li>
+                        <li id="0" className={`${activeMenu === 0 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(0) }}>BreakFast</li>
+                        <li id="1" className={`${activeMenu === 1 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(1) }}>Lunch</li>
+                        <li id="2" className={`${activeMenu === 2 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(2) }}>Dinner</li>
+                        <li id="3" className={`${activeMenu === 3 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(3) }}>Desert</li>
                     </ul>
                     <ul className="flex w-[30%] justify-between max-lg:pt-4 max-sm:w-[50%]">
-                        <li className="">Soups</li>
-                        <li className="">Snacks</li>
-                        <li className="">Drink</li>
+                        <li id="4" className={`${activeMenu === 4 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(4) }}>Soups</li>
+                        <li id="5" className={`${activeMenu === 5 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(5) }}>Snacks</li>
+                        <li id="6" className={`${activeMenu === 6 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(6) }}>Drink</li>
                     </ul>
                 </div>
-
                 <div className="flex w-full justify-center items-center max-lg:flex-col ">
-                   
-                    <div className="list flex ">
-                        <Menu />
-                    </div>
+
+                    <Menu activeMenu={activeMenu} />
+
                 </div>
 
             </div>
@@ -306,4 +307,4 @@ const page = () => {
     )
 }
 
-export default page
+export default AboutPage

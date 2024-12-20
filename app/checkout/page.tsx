@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Slash } from 'lucide-react'
 import Link from 'next/link'
-
+import Image from 'next/image'
 
 const Checkout = () => {
     return (
@@ -118,9 +118,11 @@ const Checkout = () => {
                                     key={index}
                                     className="flex items-center justify-between border-b pb-4"
                                 >
-                                    <img
+                                    <Image
                                         src="/img/checkoutimg.svg"
                                         alt="Chicken Tikka Kabab"
+                                        height={64}
+                                        width={64}
                                         className="w-16 h-16 rounded-lg"
                                     />
                                     <div className="flex-1 px-4">

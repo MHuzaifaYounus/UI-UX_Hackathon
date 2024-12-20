@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const chefs = [
@@ -17,16 +18,18 @@ const chefs = [
 
 const ChefGrid = () => {
   return (
-    <div className="bg-gray-100 min-h-screen p-10">
+    <div className="bg-gray-100 min-h-screen p-10 max-sm:p-3">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {chefs.map((chef, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-lg overflow-hidden"
+            className="bg-white rounded-lg shadow-lg overflow-hidden "
           >
-            <img
+            <Image
               src={chef.image}
               alt={chef.name}
+              height={379}
+              width={200}
               className="w-full h-[379px] object-cover"
             />
             <div className="p-4">
