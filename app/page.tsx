@@ -10,10 +10,22 @@ import { Button } from "@/components/ui/button";
 import TestimonialCard from "@/components/testimonal";
 import Link from "next/link";
 import MenuSection from "@/components/MenuSection";
+import { client } from "@/sanity/lib/client";
+import { Chef } from "@/types";
 
 const greatVibes = Great_Vibes({ weight: ["400"], subsets: ["latin"] })
 
-export default function Home() {
+export default async function Home() {
+  const chefs: Chef[] = await client.fetch(`*[_type == "chef"]{
+  name,
+  position,
+  experience,
+  specialty,
+  "image":image.asset->url,
+  description,
+  available
+}`)
+
 
 
   return (
@@ -389,38 +401,26 @@ export default function Home() {
 
         </h1>
         <div className="flex w-full flex-wrap justify-between items-center pt-20 max-md:justify-center">
-          <div className="w-[312px] h-[391px] rounded-md mt-8">
-            <Image
-              src={"/img/frame71.svg"}
-              alt="Search Icon"
-              width={312}
-              height={391}
-            />
-          </div>
-          <div className="w-[312px] h-[391px] rounded-md mt-8">
-            <Image
-              src={"/img/frame72.svg"}
-              alt="Search Icon"
-              width={312}
-              height={391}
-            />
-          </div>
-          <div className="w-[312px] h-[391px] rounded-md mt-8">
-            <Image
-              src={"/img/frame73.svg"}
-              alt="Search Icon"
-              width={312}
-              height={391}
-            />
-          </div>
-          <div className="w-[312px] h-[391px] rounded-md mt-8">
-            <Image
-              src={"/img/frame74.svg"}
-              alt="Search Icon"
-              width={312}
-              height={391}
-            />
-          </div>
+          {chefs.map((chef, index) => {
+            if (index <= 3) {
+              return <div key={index} className="w-[312px] h-[391px] rounded-md mt-8 relative">
+                <div className="absolute bottom-0 left-0 h-[70px] w-[200px] bg-gray-200 p-3 text-black">
+                    <h1 className="font-semibold text-lg">{chef.name}</h1>
+                    <p>{chef.position}</p>
+                </div>
+                <Image
+                  src={chef.image || ""}
+                  alt="Search Icon"
+                  width={312}
+                  height={391}
+                />
+              </div>
+            }
+
+          })}
+
+
+
         </div>
         <div className="w-full flex justify-center pt-20">
           <Button className="bg-transparent border-primary_color border-2 rounded-[25px] w-[155px] h-[50px]"><Link href={"/chefs"}>See More</Link></Button>

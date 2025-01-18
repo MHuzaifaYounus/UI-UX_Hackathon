@@ -9,28 +9,36 @@ import {
 import { Slash } from 'lucide-react'
 import Image from 'next/image'
 import SocialMediaIcons from '@/components/socialIcons'
-
-const products = [
-    { name: "Chicken chup", price: 12.0, image: "/img/shop1.svg" },
-    { name: "Sandwiches", price: 25.0, image: "/img/shop2.svg" },
-    { name: "cheese Butter", price: 10.0, image: "/img/shop3.svg" },
-    { name: "Pizza", price: 43.0, image: "/img/shop4.svg" },
-    { name: "Drink", price: 23.0, image: "/img/shop5.svg" },
-    { name: "Chicken Chup", price: 17.0, image: "/img/shop6.svg" },
-    { name: "Sandwiches", price: 25.0, image: "/img/shop7.svg" },
-    { name: "Cheese Butter", price: 10.0, image: "/img/shop8.svg" },
-    { name: "Pizza", price: 43.0, image: "/img/shop9.svg" },
-    { name: "Drink", price: 23.0, originalPrice: 46.0, image: "/img/shop10.svg" },
-    { name: "Country Burger", price: 45.0, image: "/img/shop11.svg" },
-    { name: "Burger", price: 21.0, originalPrice: 45.0, image: "/img/shop12.svg" },
-    { name: "Chocolate Muffin", price: 27.0, originalPrice: 45.0, image: "/img/shop13.svg" },
-    { name: "Fresh Lime", price: 28.0, originalPrice: 45.0, image: "/img/shop14.svg" },
-    { name: "Country Burger", price: 45.0, image: "/img/shop15.svg" },
-
-  ];
+import { Food } from '@/types'
+import { client } from '@/sanity/lib/client'
 
 
-const ShopItem = ({ params }: { params: { itemId: number } }) => {
+
+
+const ShopItem = async ({ params: { itemId } }: { params: { itemId: string } }) => {
+    const products: Food[] = await client.fetch(`*[_type == "food" && slug.current == $itemId ]{
+  name,
+  category,
+  price,
+  originalPrice,
+  tags,
+  "image":image.asset->url,
+  description,
+  available,
+  "slug": slug.current
+}`, { itemId })
+
+    const moreItems: Food[] = await client.fetch(`*[_type == "food"]{
+    name,
+    category,
+    price,
+    originalPrice,
+    tags,
+    "image":image.asset->url,
+    description,
+    available,
+    "slug": slug.current
+  }`)
 
 
 
@@ -57,7 +65,7 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
                 <div className="left grid grid-cols-4 grid-rows-4 gap-2 max-xl:w-full">
                     <div className="">
                         <Image
-                            src={`/img/shop${Number(params?.itemId)+1}.svg`}
+                            src={products[0]?.image || ""}
                             alt="user"
                             width={132}
                             height={129}
@@ -66,7 +74,7 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
                     </div>
                     <div className="col-span-3 row-span-4">
                         <Image
-                            src={`/img/shop${Number(params?.itemId)+1}.svg`}
+                            src={products[0]?.image || ""}
                             alt="user"
                             width={491}
                             height={596}
@@ -75,7 +83,7 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
                     </div>
                     <div className="">
                         <Image
-                            src={`/img/shop${Number(params?.itemId)+1}.svg`}
+                            src={products[0]?.image || ""}
                             alt="user"
                             width={132}
                             height={129}
@@ -84,7 +92,7 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
                     </div>
                     <div className="">
                         <Image
-                            src={`/img/shop${Number(params?.itemId)+1}.svg`}
+                            src={products[0]?.image || ""}
                             alt="user"
                             width={132}
                             height={129}
@@ -93,7 +101,7 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
                     </div>
                     <div className="">
                         <Image
-                            src={`/img/shop${Number(params?.itemId)+1}.svg`}
+                            src={products[0]?.image || ""}
                             alt="user"
                             width={132}
                             height={129}
@@ -113,19 +121,16 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
 
                     {/* Product Title */}
                     <div className="px-4 pb-15 text-black border-b border-gray-400">
-                        <h2 className="text-5xl font-bold max-sm:text-2xl">{products[params?.itemId].name}</h2>
+                        <h2 className="text-5xl font-bold max-sm:text-2xl">{products[0]?.name}</h2>
                         <p className="text-gray-600 w-[608px] text-lg mt-5 pb-16 max-sm:w-full max-sm:text-sm">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam
-                            pellentesque bibendum non dui volutpat fringilla bibendum. Urna,
-                            urna, vitae feugiat pretium donec id elementum. Ultrices mattis sed
-                            vitae mus risus. Lacus nisi, et ac dapibus sit eu velit in consequat.
+                            {products[0]?.description}
                         </p>
                     </div>
 
                     {/* Price and Rating */}
                     <div className="px-4 py-2">
                         <div className="flex  flex-col justify-between">
-                            <span className="text-3xl font-bold ">{products[params?.itemId].price}</span>
+                            <span className="text-3xl font-bold ">{products[0]?.price}</span>
                             <div className="flex items-center">
                                 <span className="text-primary_color  text-xl mr-1">★★★★★</span>
                                 <span className="text-gray-600 text-sm">|5 rating | 22 Reviews</span>
@@ -151,8 +156,8 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
                     {/* Additional Info */}
                     <div className="px-4 py-2">
                         <div className="text-sm text-gray-600 flex flex-wrap flex-col gap-4">
-                            <span>Category: <strong>Pizza</strong></span>
-                            <span>Tag: <strong>Our Shop</strong></span>
+                            <span>Category: <strong>{products[0]?.category}</strong></span>
+                            <span>Tag: <strong>{products[0]?.tags}</strong></span>
                         </div>
                     </div>
 
@@ -164,7 +169,7 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
 
                 </div>
             </div>
-            
+
             <div className="section2 w-[80%] m-auto py-20  max-xl:w-[95%] ">
                 {/* Tabs */}
                 <div className="border-b border-gray-300 flex space-x-4 text-sm">
@@ -172,21 +177,16 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
                         Description
                     </button>
                     <button className="px-4 py-2 font-medium text-gray-600 hover:text-orange-500">
-                        Reviews (24)
+                        Reviews ()
                     </button>
                 </div>
 
                 {/* Content */}
                 <div className="mt-4 text-gray-700">
                     <p>
-                        Nam tristique porta ligula, vel viverra sem eleifend nec. Nulla sed purus augue, eu
-                        euismod tellus. Nam mattis eros nec mi sagittis sagittis. Vestibulum suscipit cursus
-                        bibendum.
+                        {products[0]?.description}
                     </p>
-                    <p className="mt-2">
-                        Suspendisse cursus sodales placerat. Morbi eu lacus ex. Curabitur blandit justo urna, id
-                        porttitor est dignissim nec. Pellentesque scelerisque hendrerit posuere.
-                    </p>
+
                 </div>
 
                 {/* Key Benefits */}
@@ -205,36 +205,33 @@ const ShopItem = ({ params }: { params: { itemId: number } }) => {
                 <div className="mt-10">
                     <h3 className="text-lg font-bold text-gray-800">Similar Products</h3>
                     <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4 mt-4 ">
-                        {[
-                            { title: "Fresh Lime", price: 38, oldPrice: 45, image: "/img/shop1.svg" },
-                            { title: "Chocolate Muffin", price: 28, image: "/img/shop2.svg" },
-                            { title: "Burger", price: 21, image: "/img/shop3.svg" },
-                            { title: "Fresh Lime", price: 38, oldPrice: 45, image: "/img/shop4.svg" },
-                        ].map((product, index) => (
-                            <div
-                                key={index}
-                                className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm"
-                            >
-                                <Image
-                                    src={product.image}
-                                    alt={product.title}
-                                    height={267}
-                                    width={267}
-                                    className="w-full h-[267px] object-cover"
-                                />
-                                <div className="p-4">
-                                    <h4 className="font-semibold text-gray-800">{product.title}</h4>
-                                    <div className="mt-1">
-                                        <span className="text-primary_color  font-bold text-lg">${product.price}</span>
-                                        {product.oldPrice && (
-                                            <span className="text-gray-500 line-through text-sm ml-2">
-                                                ${product.oldPrice}
-                                            </span>
-                                        )}
+                        {moreItems.map((product, index) => {
+                            if (index < 3) {
+                                return <div
+                                    key={index}
+                                    className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                                >
+                                    <Image
+                                        src={product?.image || ""}
+                                        alt={product.name}
+                                        height={267}
+                                        width={267}
+                                        className="w-full h-[267px] object-cover"
+                                    />
+                                    <div className="p-4">
+                                        <h4 className="font-semibold text-gray-800">{product.name}</h4>
+                                        <div className="mt-1">
+                                            <span className="text-primary_color  font-bold text-lg">${product.price}</span>
+                                            {product.originalPrice && (
+                                                <span className="text-gray-500 line-through text-sm ml-2">
+                                                    ${product.originalPrice}
+                                                </span>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            }
+                        })}
                     </div>
                 </div>
             </div>

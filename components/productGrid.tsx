@@ -1,27 +1,33 @@
+"use client"
+import { client } from "@/sanity/lib/client";
+import { Food } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const ProductGrid = () => {
-  // Example product data
-  const products = [
-    { name: "Chicken chup", price: 12.0, image: "/img/shop1.svg" },
-    { name: "Sandwiches", price: 25.0, image: "/img/shop2.svg" },
-    { name: "cheese Butter", price: 10.0, image: "/img/shop3.svg" },
-    { name: "Pizza", price: 43.0, image: "/img/shop4.svg" },
-    { name: "Drink", price: 23.0, image: "/img/shop5.svg" },
-    { name: "Chicken Chup", price: 17.0, image: "/img/shop6.svg" },
-    { name: "Sandwiches", price: 25.0, image: "/img/shop7.svg" },
-    { name: "Cheese Butter", price: 10.0, image: "/img/shop8.svg" },
-    { name: "Pizza", price: 43.0, image: "/img/shop9.svg" },
-    { name: "Drink", price: 23.0, originalPrice: 46.0, image: "/img/shop10.svg" },
-    { name: "Country Burger", price: 45.0, image: "/img/shop11.svg" },
-    { name: "Burger", price: 21.0, originalPrice: 45.0, image: "/img/shop12.svg" },
-    { name: "Chocolate Muffin", price: 27.0, originalPrice: 45.0, image: "/img/shop13.svg" },
-    { name: "Fresh Lime", price: 28.0, originalPrice: 45.0, image: "/img/shop14.svg" },
-    { name: "Country Burger", price: 45.0, image: "/img/shop15.svg" },
+const ProductGrid =() => {
+  const [products, setProducts] = useState<Food[]>([])
+  useEffect(() => {
+    async function getData() {
+      const response: Food[] = await client.fetch(`*[_type == "food"]{
+        name,
+        category,
+        price,
+        originalPrice,
+        tags,
+        "image":image.asset->url,
+        description,
+        available,
+        "slug": slug.current
+      }`)
+      console.log(response)
+      setProducts(response)
+     
+    }
+    getData()
+    
+  },[])
 
-  ];
 
   return (
     <div className="p-4 w-[75%] max-lg:w-full">
@@ -49,11 +55,11 @@ const ProductGrid = () => {
       {/* Product Grid */}
       <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
         {products.map((product, index) => (
-          <Link key={index} href={`/shop/${index}`}>
-            <div  className="border border-gray-200 rounded cursor-pointer">
+          <Link key={index} href={`/shop/${product.slug}`}>
+            <div className="border border-gray-200 rounded cursor-pointer">
               <div className="relative">
                 <Image
-                  src={`${product.image}`}
+                  src={product?.image || ""}
                   alt={product.name}
                   height={267}
                   width={312}

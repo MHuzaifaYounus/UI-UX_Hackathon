@@ -16,15 +16,33 @@ export default {
 
     },
     {
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      
+    },
+    {
       name: 'price',
       title: 'Price',
       type: 'number',
 
     },
     {
-      name: 'category',
-      title: 'Category',
-      type: 'string',
+      name: 'originalPrice',
+      title: 'Original Price',
+      type: 'number',
+
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+
+    },
+    {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
 
     },
     {
