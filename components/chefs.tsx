@@ -19,6 +19,7 @@ const ChefGrid = () => {
     description,
     available
   }`)
+      console.log(response)
       setChefs(response)
     }
     getData()
