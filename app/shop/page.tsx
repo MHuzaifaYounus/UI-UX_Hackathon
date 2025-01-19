@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -14,6 +15,15 @@ import ProductGrid from '@/components/productGrid'
 
 
 const Shop = () => {
+    const [checkedCategories, setCheckedCategories] = useState<string[]>([])
+   
+    async function handleData(data:string[]) {
+       
+        
+        setCheckedCategories(data)
+      
+    }
+
     return (
         <div>
             <div className="hero w-full h-[320px] menu_bg flex flex-col items-center justify-center ">
@@ -35,9 +45,9 @@ const Shop = () => {
             </div>
             <div className="w-[80%] m-auto py-20 flex justify-between max-xl:w-[95%]">
 
-                <ProductGrid />
+                <ProductGrid checkedCategories={checkedCategories}/>
 
-                <Sidebar />
+                <Sidebar onUpdateArray={handleData} />
 
 
             </div>

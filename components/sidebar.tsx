@@ -1,8 +1,58 @@
+"use client"
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import { Food } from "@/types";
+import { client } from "@/sanity/lib/client";
+import ProductGrid from "./productGrid";
+import Shop from "@/app/shop/page";
 
-const Sidebar = () => {
+interface Categories {
+    category: string
+}
+
+interface childComponentProp {
+    onUpdateArray: (data: string[]) => void
+}
+
+const Sidebar: React.FC<childComponentProp> = ({ onUpdateArray }) => {
+    const [Categories, setCategories] = useState<string[]>([])
+    const [checkedState, setCheckedState] = useState<string[]>([])
+
+    const handleCheckboxChange = (category: string) => {
+        setCheckedState((prevState) =>
+            prevState.includes(category)
+                ? prevState.filter((item) => item !== category) 
+                : [...prevState, category] 
+        );
+    };
+
+    useEffect(() => {
+        console.log(checkedState)
+        onUpdateArray(checkedState)
+    }, [checkedState])
+
+
+    useEffect(() => {
+        async function getCategories() {
+            const response = await client.fetch(`*[_type == "food"]{
+                category,
+              }`)
+            const array: string[] = []
+            response.forEach((e: Categories) => {
+                if (!array.includes(e.category)) {
+                    array.push(e.category)
+                }
+            });
+
+            setCategories(array)
+
+        }
+        getCategories()
+
+    }, [])
+
+
     return (
         <div className="w-[312px] bg-white p-4 border border-gray-200 max-lg:hidden">
             {/* Search */}
@@ -27,10 +77,10 @@ const Sidebar = () => {
             <div className="mb-6">
                 <h3 className="font-semibold text-lg mb-2">Category</h3>
                 <div className="space-y-2">
-                    {["Sandwiches", "Burger", "Chicken Chup", "Drink", "Pizza", "Thi", "Non Veg", "Uncategorized"].map(
-                        (category) => (
-                            <label key={category} className="flex items-center space-x-2">
-                                <input type="checkbox" className="form-checkbox text-orange-500" />
+                    {Categories.map(
+                        (category, index) => (
+                            <label key={index} className="flex items-center space-x-2">
+                                <input type="checkbox" className="form-checkbox text-orange-500" onChange={() => { handleCheckboxChange(category) }} />
                                 <span>{category}</span>
                             </label>
                         )

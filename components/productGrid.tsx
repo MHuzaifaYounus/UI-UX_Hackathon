@@ -1,12 +1,16 @@
 "use client"
 import { client } from "@/sanity/lib/client";
 import { Food } from "@/types";
+import { checkCustomRoutes } from "next/dist/lib/load-custom-routes";
 import Image from "next/image";
 import Link from "next/link";
+import { emit } from "node:process";
 import React, { useEffect, useState } from "react";
 
-const ProductGrid =() => {
+const ProductGrid = ({ checkedCategories }: { checkedCategories: string[] }) => {
+
   const [products, setProducts] = useState<Food[]>([])
+
   useEffect(() => {
     async function getData() {
       const response: Food[] = await client.fetch(`*[_type == "food"]{
@@ -20,13 +24,26 @@ const ProductGrid =() => {
         available,
         "slug": slug.current
       }`)
-      console.log(response)
-      setProducts(response)
-     
+
+      if (checkedCategories.length != 0) {
+        const array: Food[] = []
+        response.forEach((e) => {
+          if (checkedCategories.includes(e.category)) {
+            array.push(e)
+          }
+        })
+        setProducts(array)
+      }
+      else{
+        setProducts(response)
+        
+      }
+
+
     }
     getData()
-    
-  },[])
+
+  }, [checkedCategories])
 
 
   return (
