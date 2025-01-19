@@ -147,7 +147,7 @@ const ShopItem = async ({ params: { itemId } }: { params: { itemId: string } }) 
                                 defaultValue="1"
                                 className="w-12 h-[50px] text-center border border-gray-300 rounded-md"
                             />
-                            <button className="ml-4 px-4 py-2 h-[50px] bg-primary_colortext-white text-sm font-medium rounded-md hover:bg-orange-600">
+                            <button className="ml-4 px-4 py-2 h-[50px] bg-primary_colortext-white text-sm font-medium rounded-md bg-primary_color">
                                 Add to cart
                             </button>
                         </div>

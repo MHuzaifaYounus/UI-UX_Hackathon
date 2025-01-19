@@ -2,10 +2,8 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { Food } from "@/types";
 import { client } from "@/sanity/lib/client";
-import ProductGrid from "./productGrid";
-import Shop from "@/app/shop/page";
+
 
 interface Categories {
     category: string
@@ -30,7 +28,7 @@ const Sidebar: React.FC<childComponentProp> = ({ onUpdateArray }) => {
     useEffect(() => {
         console.log(checkedState)
         onUpdateArray(checkedState)
-    }, [checkedState])
+    }, [checkedState,onUpdateArray])
 
 
     useEffect(() => {

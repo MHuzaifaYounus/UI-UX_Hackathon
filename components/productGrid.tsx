@@ -1,10 +1,8 @@
 "use client"
 import { client } from "@/sanity/lib/client";
 import { Food } from "@/types";
-import { checkCustomRoutes } from "next/dist/lib/load-custom-routes";
 import Image from "next/image";
 import Link from "next/link";
-import { emit } from "node:process";
 import React, { useEffect, useState } from "react";
 
 const ProductGrid = ({ checkedCategories }: { checkedCategories: string[] }) => {
