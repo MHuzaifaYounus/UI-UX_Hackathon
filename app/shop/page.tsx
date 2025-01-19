@@ -16,12 +16,16 @@ import ProductGrid from '@/components/productGrid'
 
 const Shop = () => {
     const [checkedCategories, setCheckedCategories] = useState<string[]>([])
+    const [searchInput, setSearchInput] = useState<string>("")
    
     async function handleData(data:string[]) {
        
         
         setCheckedCategories(data)
       
+    }
+    async function handleSearch(input:string) {
+       setSearchInput(input)
     }
 
     return (
@@ -45,9 +49,9 @@ const Shop = () => {
             </div>
             <div className="w-[80%] m-auto py-20 flex justify-between max-xl:w-[95%]">
 
-                <ProductGrid checkedCategories={checkedCategories}/>
+                <ProductGrid checkedCategories={checkedCategories} searchInput={searchInput}/>
 
-                <Sidebar onUpdateArray={handleData} />
+                <Sidebar onUpdateArray={handleData} onSearch={handleSearch} />
 
 
             </div>

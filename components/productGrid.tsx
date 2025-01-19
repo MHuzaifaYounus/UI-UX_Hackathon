@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const ProductGrid = ({ checkedCategories }: { checkedCategories: string[] }) => {
-
+const ProductGrid = ({ checkedCategories, searchInput }: { checkedCategories: string[], searchInput: string }) => {
+console.log(searchInput)
   const [products, setProducts] = useState<Food[]>([])
 
   useEffect(() => {
@@ -23,25 +23,30 @@ const ProductGrid = ({ checkedCategories }: { checkedCategories: string[] }) => 
         "slug": slug.current
       }`)
 
-      if (checkedCategories.length != 0) {
+      if ((checkedCategories.length != 0) || searchInput) {
+        console.log("chala he")
         const array: Food[] = []
         response.forEach((e) => {
           if (checkedCategories.includes(e.category)) {
             array.push(e)
           }
+          if ((e.name).toLocaleLowerCase() === searchInput.toLocaleLowerCase() || e.tags.includes(searchInput)) {
+            array.push(e)
+          }
         })
         setProducts(array)
       }
-      else{
+
+      else {
         setProducts(response)
-        
+
       }
 
 
     }
     getData()
 
-  }, [checkedCategories])
+  }, [checkedCategories,searchInput])
 
 
   return (

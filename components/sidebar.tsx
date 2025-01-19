@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { client } from "@/sanity/lib/client";
 
@@ -10,25 +10,35 @@ interface Categories {
 }
 
 interface childComponentProp {
-    onUpdateArray: (data: string[]) => void
+    onUpdateArray: (data: string[]) => void,
+    onSearch:(input:string)=>void
 }
 
-const Sidebar: React.FC<childComponentProp> = ({ onUpdateArray }) => {
+const Sidebar: React.FC<childComponentProp> = ({ onUpdateArray, onSearch }) => {
     const [Categories, setCategories] = useState<string[]>([])
     const [checkedState, setCheckedState] = useState<string[]>([])
+    const [searchInput, setSearchInput] = useState<string>("")
 
     const handleCheckboxChange = (category: string) => {
         setCheckedState((prevState) =>
             prevState.includes(category)
-                ? prevState.filter((item) => item !== category) 
-                : [...prevState, category] 
+                ? prevState.filter((item) => item !== category)
+                : [...prevState, category]
         );
     };
+    function handleSearchbar(e: ChangeEvent<HTMLInputElement>) {
+        setSearchInput(e.target.value)
+
+    }
+    function handleSearchItem() {
+        onSearch(searchInput)
+        
+    }
 
     useEffect(() => {
         console.log(checkedState)
         onUpdateArray(checkedState)
-    }, [checkedState,onUpdateArray])
+    }, [checkedState, onUpdateArray])
 
 
     useEffect(() => {
@@ -60,13 +70,15 @@ const Sidebar: React.FC<childComponentProp> = ({ onUpdateArray }) => {
                     placeholder="Search Product"
                     id="searchBox"
                     className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-orange-300"
+                    value={searchInput}
+                    onChange={handleSearchbar}
                 />
                 <Button className="bg-primary_color h-[46] rounded-s-none"> <Image
                     src="/icons/search.svg"
                     alt="Starter Menu Dish"
                     width={24}
                     height={24}
-
+                    onClick={handleSearchItem}
                 /></Button>
 
             </div>
