@@ -21,11 +21,13 @@ const ShopItem = ({ params: { itemId } }: { params: { itemId: string } }) => {
     const [products, setProducts] = useState<Food[]>([])
     const [moreItems, setMoreItems] = useState<Food[]>([])
     const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
+    const [showMsg, setShowMsg] = useState<boolean>(false)
 
     function addtoCart(id: string) {
         if (!CartProducts.find((productid) => productid === id)) {
             CartProducts.push(id)
             setIsAddedToCart(true)
+            setShowMsg(true)
         }
     }
 
@@ -68,11 +70,19 @@ const ShopItem = ({ params: { itemId } }: { params: { itemId: string } }) => {
         })
     }, [itemId])
 
+    useEffect(() => {
+        if(showMsg){
+            setTimeout(() => { 
+                setShowMsg(false)
+             },3000)
+        }
+    }, [showMsg])
 
 
 
     return (
         <div>
+            {showMsg && <div className='text-white bg-black border-2 border-primary_color rounded-xl fixed bottom-2 left-10 h-[50px] w-[250px] flex justify-center items-center'><p className='text-lg font-semibold'>Item Successfully Added</p></div>}
             <div className="hero w-full h-[320px] menu_bg flex flex-col items-center justify-center ">
                 <h1 className='pb-5 font-bold text-5xl text-white'>Shop Details</h1>
                 <Breadcrumb>
@@ -170,12 +180,7 @@ const ShopItem = ({ params: { itemId } }: { params: { itemId: string } }) => {
                     {/* Add to cart */}
                     <div className="px-4 py-4">
                         <div className="flex items-center">
-                            <input
-                                type="number"
-                                min="1"
-                                defaultValue="1"
-                                className="w-12 h-[50px] text-center border border-gray-300 rounded-md"
-                            />
+
                             <button className={`px-4 py-2 h-[50px] bg-primary_colortext-white text-sm font-medium rounded-md ${isAddedToCart ? "bg-gray-400" : "bg-primary_color"} text-white ml-4`} onClick={() => { addtoCart(itemId) }}>
                                 Add to cart
                             </button>
@@ -198,7 +203,6 @@ const ShopItem = ({ params: { itemId } }: { params: { itemId: string } }) => {
 
                 </div>
             </div>
-
             <div className="section2 w-[80%] m-auto py-20  max-xl:w-[95%] ">
                 {/* Tabs */}
                 <div className="border-b border-gray-300 flex space-x-4 text-sm">

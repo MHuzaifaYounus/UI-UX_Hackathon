@@ -8,9 +8,9 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { Slash } from 'lucide-react'
-import Link from 'next/link'
 import Image from 'next/image'
 import { CheckoutProducts } from '../global'
+import ShippingForm from '@/components/shippingForm'
 
 
 const Checkout = () => {
@@ -54,82 +54,8 @@ const Checkout = () => {
             <div className="p-8 max-md:p-1 py-20">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Shipping and Billing Form */}
-                    <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
-                        <h2 className="text-xl font-semibold mb-6">Shipping Address</h2>
-                        <form className="grid grid-cols-2 max-md:grid-cols-1 max-md:grid-rows-11 gap-4">
-                            <input
-                                type="text"
-                                placeholder="First name"
-                                className="border p-2 rounded max-md:col-span-2"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Last name"
-                                className="border p-2 rounded max-md:col-span-2"
-                            />
-                            <input
-                                type="email"
-                                placeholder="Email address"
-                                className="border p-2 rounded col-span-2 sm:col-span-1"
-                            />
-                            <input
-                                type="tel"
-                                placeholder="Phone number"
-                                className="border p-2 rounded max-md:col-span-2"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Company"
-                                className="border p-2 rounded max-md:col-span-2"
-                            />
-                            <select className="border p-2 roundedmax-md:col-span-2">
-                                <option>Choose country</option>
-                                <option>USA</option>
-                                <option>Canada</option>
-                                <option>UK</option>
-                            </select>
-                            <select className="border p-2 rounded max-md:col-span-2">
-                                <option>Choose city</option>
-                                <option>New York</option>
-                                <option>Los Angeles</option>
-                                <option>Chicago</option>
-                            </select>
-                            <input
-                                type="text"
-                                placeholder="Zip code"
-                                className="border p-2 rounded max-md:col-span-2"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Address 1"
-                                className="border p-2 rounded col-span-2"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Address 2"
-                                className="border p-2 rounded col-span-2"
-                            />
-                        </form>
-                        <div className="mt-6">
-                            <label className="flex  flex-col ">
-                                <h2 className='font-bold text-xl'>Billing Address</h2>
-                                <div className="flex ">
-
-                                    <input type="checkbox" className="mr-2" />
-                                    Same as shipping address
-                                </div>
-                            </label>
-                        </div>
-                        <div className="flex justify-between items-center mt-6 max-sm:flex-col ">
-                            <button className="bg-white w-[50%] max-sm:w-full h-[58px] text-black px-6 py-2  hover:bg-gray-500 border-2 border-gray-300">
-                                <Link href={"/cart"}>&lt; Back to cart</Link>
-                            </button>
-                            <button className="bg-primary_color w-[50%] max-sm:w-full h-[58px] text-white px-6 py-2  max-sm:mt-5 hover:bg-primary_color">
-                                Proceed to shipping &rarr;
-                            </button>
-                        </div>
-                    </div>
-
+                    <ShippingForm />
+                
                     {/* Order Summary */}
                     <div className="bg-white p-6 rounded-lg shadow-lg">
 
@@ -179,9 +105,7 @@ const Checkout = () => {
                             <span>Total</span>
                             <span>${finalTotal}</span>
                         </div>
-                        <button className="w-full bg-primary_color text-white py-2 mt-6 rounded-lg hover:bg-primary_color h-[58px]">
-                            Place an order &rarr;
-                        </button>
+                      
                     </div>
                 </div>
             </div>

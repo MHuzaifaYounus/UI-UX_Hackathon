@@ -37,6 +37,8 @@ const Item = ({ product }: { product: Food }) => {
         })
     }, [product.slug,isAddedtoWishList])
 
+
+    
     return (
 
         <div className="border border-gray-200 rounded cursor-pointer">
