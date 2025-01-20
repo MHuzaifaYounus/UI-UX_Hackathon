@@ -169,7 +169,7 @@ const ShopItem = ({ params: { itemId } }: { params: { itemId: string } }) => {
                     {/* Price and Rating */}
                     <div className="px-4 py-2">
                         <div className="flex  flex-col justify-between">
-                            <span className="text-3xl font-bold ">{products[0]?.price}</span>
+                            <span className="text-3xl font-bold ">${products[0]?.price}</span>
                             <div className="flex items-center">
                                 <span className="text-primary_color  text-xl mr-1">★★★★★</span>
                                 <span className="text-gray-600 text-sm">|5 rating | 22 Reviews</span>
