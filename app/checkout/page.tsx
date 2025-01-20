@@ -29,7 +29,7 @@ const Checkout = () => {
             setTaxAmount(50)
         }
 
-    }, []);
+    }, [taxAmount]);
 
 
     return (
@@ -154,7 +154,7 @@ const Checkout = () => {
                                             <h3 className="text-lg font-semibold">
                                                 {item.name}
                                             </h3>
-                                            <p className="text-gray-500 text-sm">{item.price} per item</p>
+                                            <p className="text-gray-500 text-sm">{item.price} per item  {item.quantity} items</p>
                                         </div>
                                         <span className="text-gray-600">${item.totalPrice}</span>
                                     </div>

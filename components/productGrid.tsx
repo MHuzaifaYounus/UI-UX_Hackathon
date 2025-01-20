@@ -1,13 +1,14 @@
 "use client"
 import { client } from "@/sanity/lib/client";
 import { Food } from "@/types";
-import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import Item from "./item";
 
 const ProductGrid = ({ checkedCategories, searchInput }: { checkedCategories: string[], searchInput: string }) => {
-console.log(searchInput)
+  console.log(searchInput)
   const [products, setProducts] = useState<Food[]>([])
+
+
 
   useEffect(() => {
     async function getData() {
@@ -46,7 +47,7 @@ console.log(searchInput)
     }
     getData()
 
-  }, [checkedCategories,searchInput])
+  }, [checkedCategories, searchInput])
 
 
   return (
@@ -75,35 +76,7 @@ console.log(searchInput)
       {/* Product Grid */}
       <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
         {products.map((product, index) => (
-          <Link key={index} href={`/shop/${product.slug}`}>
-            <div className="border border-gray-200 rounded cursor-pointer">
-              <div className="relative">
-                <Image
-                  src={product?.image || ""}
-                  alt={product.name}
-                  height={267}
-                  width={312}
-                  className="w-full h-[267px] object-cover rounded"
-                />
-                {product.originalPrice && (
-                  <span className="absolute top-2 right-2 bg-primary_color text-white text-xs px-2 py-1 rounded">
-                    -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
-                  </span>
-                )}
-              </div>
-              <div className="mt-2 p-2">
-                <h3 className="text-sm font-semibold">{product.name}</h3>
-                <div className="flex items-center space-x-2 text-sm mt-1">
-                  <span className="text-primary_color font-bold">${product.price.toFixed(2)}</span>
-                  {product.originalPrice && (
-                    <span className="text-gray-500 line-through text-xs">
-                      ${product.originalPrice.toFixed(2)}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </Link>
+          <Item key={index} product={product} />
         ))}
       </div>
 

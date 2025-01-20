@@ -6,10 +6,10 @@ import Link from "next/link";
 
 const Header: React.FC = () => {
     const [isNavbar, setIsNavbar] = useState(false)
-    
-    function showNavBar():void {
+
+    function showNavBar(): void {
         setIsNavbar(!isNavbar)
-        
+
     }
     return (
         <header className="bg-black text-white px-6">
@@ -64,6 +64,8 @@ const Header: React.FC = () => {
                             height={24}
                         />
                     </Link>
+                    <Link href={"/wishlist"}><Image src={"/icons/wishlist.svg"} alt="no icon found" className="invert" width={32} height={32}></Image></Link>
+
                     <Link href={"/cart"}>
                         <Image
                             src={"/icons/cart.svg"}
@@ -73,7 +75,7 @@ const Header: React.FC = () => {
                         />
                     </Link>
                     <button
-                    onClick={() => {showNavBar() }}
+                        onClick={() => { showNavBar() }}
                         className="block lg:hidden text-primary_color"
                         aria-label="Toggle Menu"
                     >
