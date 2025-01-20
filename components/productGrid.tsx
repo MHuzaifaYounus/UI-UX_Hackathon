@@ -41,13 +41,20 @@ const ProductGrid = ({ checkedCategories, searchInput }: { checkedCategories: st
 
       if (checkedCategories.length !== 0 || searchInput) {
         const filtered: Food[] = response.filter((e) => {
-          const matchesCategory = checkedCategories.includes(e.category);
-          const matchesSearch = 
-            e.name.toLowerCase().includes(searchInput.toLowerCase()) || 
-            e.tags.some(tag => tag.toLowerCase().includes(searchInput.toLowerCase()));
-
-          return matchesCategory || matchesSearch;
+          const matchesCategory = checkedCategories.length === 0 || 
+            checkedCategories.some(
+              (category) => category.toLowerCase() === e.category.toLowerCase()
+            );
+        
+          const matchesSearch = !searchInput || 
+            e.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+            e.tags.some((tag) => tag.toLowerCase().includes(searchInput.toLowerCase()));
+        
+          // Include the item if it matches either condition or both
+          return matchesCategory && matchesSearch;
         });
+        
+        console.log(filtered)
         setFilteredProducts(filtered);
       } else {
         setFilteredProducts(response);
