@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -11,34 +12,62 @@ import Image from 'next/image'
 import SocialMediaIcons from '@/components/socialIcons'
 import { Food } from '@/types'
 import { client } from '@/sanity/lib/client'
+import { CartProducts } from '@/app/global'
 
 
 
 
-const ShopItem = async ({ params: { itemId } }: { params: { itemId: string } }) => {
-    const products: Food[] = await client.fetch(`*[_type == "food" && slug.current == $itemId ]{
-  name,
-  category,
-  price,
-  originalPrice,
-  tags,
-  "image":image.asset->url,
-  description,
-  available,
-  "slug": slug.current
-}`, { itemId })
+const ShopItem = ({ params: { itemId } }: { params: { itemId: string } }) => {
+    const [products, setProducts] = useState<Food[]>([])
+    const [moreItems, setMoreItems] = useState<Food[]>([])
+    const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
 
-    const moreItems: Food[] = await client.fetch(`*[_type == "food"]{
-    name,
-    category,
-    price,
-    originalPrice,
-    tags,
-    "image":image.asset->url,
-    description,
-    available,
-    "slug": slug.current
-  }`)
+    function addtoCart(id: string) {
+        if (!CartProducts.find((productid) => productid === id)) {
+            CartProducts.push(id)
+            setIsAddedToCart(true)
+        }
+    }
+
+    useEffect(() => {
+        async function getData() {
+
+            const response: Food[] = await client.fetch(`*[_type == "food" && slug.current == $itemId ]{
+            name,
+            category,
+            price,
+            originalPrice,
+            tags,
+            "image":image.asset->url,
+            description,
+            available,
+            "slug": slug.current
+          }`, { itemId })
+            setProducts(response)
+
+            const response2: Food[] = await client.fetch(`*[_type == "food"]{
+              name,
+              category,
+              price,
+              originalPrice,
+              tags,
+              "image":image.asset->url,
+              description,
+              available,
+              "slug": slug.current
+            }`)
+            setMoreItems(response2)
+        }
+        getData()
+    }, [itemId])
+    useEffect(() => {
+        CartProducts.forEach((id) => {
+            if (id === itemId) {
+                setIsAddedToCart(true)
+            }
+        })
+    }, [itemId])
+
 
 
 
@@ -147,7 +176,7 @@ const ShopItem = async ({ params: { itemId } }: { params: { itemId: string } }) 
                                 defaultValue="1"
                                 className="w-12 h-[50px] text-center border border-gray-300 rounded-md"
                             />
-                            <button className="ml-4 px-4 py-2 h-[50px] bg-primary_colortext-white text-sm font-medium rounded-md bg-primary_color">
+                            <button className={`px-4 py-2 h-[50px] bg-primary_colortext-white text-sm font-medium rounded-md ${isAddedToCart ? "bg-gray-400" : "bg-primary_color"} text-white ml-4`} onClick={() => { addtoCart(itemId) }}>
                                 Add to cart
                             </button>
                         </div>

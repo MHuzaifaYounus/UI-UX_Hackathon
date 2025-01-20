@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -11,18 +12,105 @@ import Image from 'next/image'
 import {
     Table,
     TableBody,
-  TableCell,
+    TableCell,
     TableHead,
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
+import { CartProducts, CheckoutProducts } from '../global'
+import { client } from '@/sanity/lib/client'
+import { CartFood, Food } from '@/types'
 
 
 
 
 const Cart = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+
+    const [cartProductsList, setCartProductsList] = useState<CartFood[]>([])
+    const [subTotal, setSubTotal] = useState<number>(0)
+
+
+    function quantityHandler(e: React.ChangeEvent<HTMLInputElement>, id: string) {
+        const updatedQuantity = Number(e.target.value);
+
+        setCartProductsList((prevList) =>
+            prevList.map((product) =>
+                product.slug === id
+                    ? { ...product, totalPrice: product.price * updatedQuantity, quantity: updatedQuantity }
+                    : product
+            )
+        );
+
+    }
+    function removeHandler(id: string) {
+        const newList = cartProductsList.filter((product) => product.slug != id)
+        CartProducts.splice(CartProducts.indexOf(id), 1)
+        setCartProductsList(newList)
+
+    }
+    function finalize() {
+        cartProductsList.forEach((product) => {
+            const existingIndex = CheckoutProducts.findIndex((p) => p.slug === product.slug);
+        
+            if (existingIndex !== -1) {
+              
+                CheckoutProducts[existingIndex] = product;
+            } else {
+                
+                CheckoutProducts.push(product);
+            }
+        });
+
+    }
+
+
+
+    useEffect(() => {
+        const newSubTotal = cartProductsList.reduce((total, product) => {
+            return total + (product.totalPrice || product.price);
+        }, 0);
+
+        setSubTotal(newSubTotal);
+
+    }, [cartProductsList]);
+
+    useEffect(() => {
+        async function getData() {
+            setIsLoading(true)
+
+            const response: Food[] = await client.fetch(`*[_type == "food"]{
+                name,
+                category,
+                price,
+                originalPrice,
+                tags,
+                "image":image.asset->url,
+                description,
+                available,
+                "slug": slug.current
+              }`)
+            const matchedProducts = response.filter((item) => {
+                return CartProducts.includes(item.slug)
+            });
+            setCartProductsList(
+                matchedProducts.map((product) => (
+                    { ...product, totalPrice: product.price, quantity: 1 }
+                ))
+            )
+            setIsLoading(false)
+
+
+        }
+        getData()
+    }, [])
+    useEffect(() => {
+        console.log(cartProductsList);
+
+    }, [cartProductsList])
+
     return (
         <div>
             <div className="hero w-full h-[320px] menu_bg flex flex-col items-center justify-center ">
@@ -54,62 +142,24 @@ const Cart = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody >
-                        <TableRow className='h-[72px] rounded-sm box_shadow font-medium' >
-                            <TableCell className='pl-4 max-sm:pl-0'>
-                                <div className="flex items-center">
-                                    <Image src={"/img/shop12.svg"} alt='no img found' width={40} height={40}></Image>
-                                    <h2 className='pl-4 max-sm:pl-1 max-sm:pr-2'>Burgur</h2>
-                                </div>
-                            </TableCell>
-                            <TableCell className='pl-4'>$21</TableCell>
-                            <TableCell className='pl-4'>
-                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={"01"} type='number' />
-                            </TableCell>
-                            <TableCell className='pl-4'>$21</TableCell>
-                            <TableCell className='pl-4'>X</TableCell>
-                        </TableRow>
-                        <TableRow className='h-[72px] rounded-sm box_shadow font-medium' >
-                            <TableCell className='pl-4 max-sm:pl-0'>
-                                <div className="flex items-center">
-                                    <Image src={"/img/shop9.svg"} alt='no img found' width={40} height={40}></Image>
-                                    <h2 className='pl-4 max-sm:pl-1 max-sm:pr-2'>Pizza</h2>
-                                </div>
-                            </TableCell>
-                            <TableCell className='pl-4'>$41</TableCell>
-                            <TableCell className='pl-4'>
-                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={"01"} type='number' />
-                            </TableCell>
-                            <TableCell className='pl-4'>$51</TableCell>
-                            <TableCell className='pl-4'>X</TableCell>
-                        </TableRow>
-                        <TableRow className='h-[72px] rounded-sm box_shadow font-medium' >
-                            <TableCell className='pl-4 max-sm:pl-0'>
-                                <div className="flex items-center">
-                                    <Image src={"/img/shop15.svg"} alt='no img found' width={40} height={40}></Image>
-                                    <h2 className='pl-4 max-sm:pl-1 max-sm:pr-2'>Fresh Lime</h2>
-                                </div>
-                            </TableCell>
-                            <TableCell className='pl-4'>$38</TableCell>
-                            <TableCell className='pl-4'>
-                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={"01"} type='number' />
-                            </TableCell>
-                            <TableCell className='pl-4'>$38</TableCell>
-                            <TableCell className='pl-4'>X</TableCell>
-                        </TableRow>
-                        <TableRow className='h-[72px] rounded-sm box_shadow font-medium' >
-                            <TableCell className='pl-4 max-sm:pl-0'>
-                                <div className="flex items-center">
-                                    <Image src={"/img/shop14.svg"} alt='no img found' width={40} height={40}></Image>
-                                    <h2 className='pl-4 max-sm:pl-1 max-sm:pr-2'>Chocolate Muffin</h2>
-                                </div>
-                            </TableCell>
-                            <TableCell className='pl-4'>$38</TableCell>
-                            <TableCell className='pl-4'>
-                                <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={"01"} type='number' />
-                            </TableCell>
-                            <TableCell className='pl-4'>$38</TableCell>
-                            <TableCell className='pl-4'>X</TableCell>
-                        </TableRow>
+                        {isLoading ? <TableRow className='text-black font-semibold text-2xl'><TableCell className='pl-4 max-sm:pl-0'>Loading...</TableCell></TableRow> : cartProductsList.map((item, index) => {
+                            return <TableRow key={index} className='h-[72px] rounded-sm box_shadow font-medium' >
+                                <TableCell className='pl-4 max-sm:pl-0'>
+                                    <div className="flex items-center">
+                                        <Image src={item?.image || ""} alt='no img found' width={40} height={40}></Image>
+                                        <h2 className='pl-4 max-sm:pl-1 max-sm:pr-2'>{item.name}</h2>
+                                    </div>
+                                </TableCell>
+                                <TableCell className='pl-4'>${item.price}</TableCell>
+                                <TableCell className='pl-4'>
+                                    <Input className='w-[74px] h-[44px] max-sm:w-[40px] max-sm:h-[30px] max-sm:text-xs' value={(item?.quantity) || 1} onChange={(e) => { quantityHandler(e, item.slug) }} type='number' />
+                                </TableCell>
+                                <TableCell className='pl-4'>${item.totalPrice}</TableCell>
+                                <TableCell className='pl-4 cursor-pointer hover:text-red-600' onClick={() => { removeHandler(item.slug) }}>X</TableCell>
+                            </TableRow>
+                        })}
+
+
 
 
                     </TableBody>
@@ -142,7 +192,7 @@ const Cart = () => {
                             <div className="p-4 rounded-md space-y-2 border border-gray-300">
                                 <div className="flex justify-between text-lg font-semibold">
                                     <span >Cart Subtotal</span>
-                                    <span className="font-medium">$120.00</span>
+                                    <span className="font-medium">${subTotal}</span>
                                 </div>
                                 <div className="flex justify-between text-sm">
                                     <span>Shipping Charge</span>
@@ -150,11 +200,11 @@ const Cart = () => {
                                 </div>
                                 <div className="flex justify-between text-lg font-semibold">
                                     <span>Total Amount</span>
-                                    <span>$205.00</span>
+                                    <span>${subTotal}</span>
                                 </div>
                             </div>
                             <button className="w-full mt-4 px-4 py-2 bg-primary_color text-white rounded hover:bg-primary_color">
-                               <Link href={"/checkout"}> Proceed to Checkout</Link>
+                                <Link href={"/checkout"} onClick={finalize}> Proceed to Checkout</Link>
                             </button>
                         </div>
                     </div>

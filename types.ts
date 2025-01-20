@@ -18,4 +18,7 @@ export interface Chef {
     description: string;
     available: boolean;
 }
-
+export interface CartFood extends Food {
+    totalPrice: number,
+    quantity: number
+}

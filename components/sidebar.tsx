@@ -70,7 +70,6 @@ const Sidebar: React.FC<childComponentProp> = ({ onUpdateArray, onSearch }) => {
                     placeholder="Search Product"
                     id="searchBox"
                     className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-orange-300"
-                    value={searchInput}
                     onChange={handleSearchbar}
                 />
                 <Button className="bg-primary_color h-[46] rounded-s-none"> <Image

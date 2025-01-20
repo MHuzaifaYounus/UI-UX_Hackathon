@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -9,8 +10,28 @@ import {
 import { Slash } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { CheckoutProducts } from '../global'
+
 
 const Checkout = () => {
+    console.log(CheckoutProducts)
+    const [subTotal, setSubTotal] = useState<number>(0)
+    const [taxAmount, setTaxAmount] = useState<number>(0)
+    const [finalTotal, setFinalTotal] = useState<number>(0)
+
+    useEffect(() => {
+        const newSubTotal = CheckoutProducts.reduce((total, product) => {
+            return total + (product.totalPrice || product.price);
+        }, 0);
+        if (newSubTotal !== 0) {
+            setSubTotal(newSubTotal);
+            setFinalTotal(newSubTotal + taxAmount)
+            setTaxAmount(50)
+        }
+
+    }, []);
+
+
     return (
         <div>
             <div className="hero w-full h-[320px] menu_bg flex flex-col items-center justify-center ">
@@ -113,49 +134,50 @@ const Checkout = () => {
                     <div className="bg-white p-6 rounded-lg shadow-lg">
 
                         <div className="space-y-4">
-                            {[...Array(3)].map((_, index) => (
-                                <div
-                                    key={index}
-                                    className="flex items-center justify-between border-b pb-4"
-                                >
-                                    <Image
-                                        src="/img/checkoutimg.svg"
-                                        alt="Chicken Tikka Kabab"
-                                        height={64}
-                                        width={64}
-                                        className="w-16 h-16 rounded-lg"
-                                    />
-                                    <div className="flex-1 px-4">
-                                        <h3 className="text-lg font-semibold">
-                                            Chicken Tikka Kabab
-                                        </h3>
-                                        <p className="text-gray-500 text-sm">150 gm net</p>
+                            {CheckoutProducts.length === 0 ?
+                                <h1 className='text-black'>No item Added to Cart</h1>
+                                :
+                                CheckoutProducts.map((item, index) => {
+
+                                    return <div
+                                        key={index}
+                                        className="flex items-center justify-between border-b pb-4"
+                                    >
+                                        <Image
+                                            src={item?.image || ""}
+                                            alt={item.name}
+                                            height={64}
+                                            width={64}
+                                            className="w-16 h-16 rounded-lg"
+                                        />
+                                        <div className="flex-1 px-4">
+                                            <h3 className="text-lg font-semibold">
+                                                {item.name}
+                                            </h3>
+                                            <p className="text-gray-500 text-sm">{item.price} per item</p>
+                                        </div>
+                                        <span className="text-gray-600">${item.totalPrice}</span>
                                     </div>
-                                    <span className="text-gray-600">$50</span>
-                                </div>
-                            ))}
+                                })
+                            }
                         </div>
                         <div className="border-t pt-4 mt-4 space-y-2">
                             <div className="flex justify-between">
                                 <span>Sub-total</span>
-                                <span>$130</span>
+                                <span>${subTotal}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span>Shipping</span>
                                 <span>Free</span>
                             </div>
                             <div className="flex justify-between">
-                                <span>Discount</span>
-                                <span>25%</span>
-                            </div>
-                            <div className="flex justify-between">
                                 <span>Tax</span>
-                                <span>$54.76</span>
+                                <span>${taxAmount}</span>
                             </div>
                         </div>
                         <div className="border-t pt-4 mt-4 flex justify-between text-xl font-bold">
                             <span>Total</span>
-                            <span>$432.65</span>
+                            <span>${finalTotal}</span>
                         </div>
                         <button className="w-full bg-primary_color text-white py-2 mt-6 rounded-lg hover:bg-primary_color h-[58px]">
                             Place an order &rarr;
