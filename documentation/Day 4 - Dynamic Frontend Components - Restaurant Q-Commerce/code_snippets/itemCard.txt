@@ -1,0 +1,93 @@
+
+const Item = ({ product }: { product: Food }) => {
+  
+    // State to manage whether the product is added to the wishlist
+    const [isAddedtoWishList, setIsAddedtoWishList] = useState<boolean>(false)
+
+    // Function to handle adding/removing product from the wishlist
+    function wishlistHandler(id: string) {
+        // If the product is not in the wishlist, add it
+        if (!WishlistProducts.find((productid) => productid === id)) {
+            WishlistProducts.push(id) // Add product to wishlist array
+            setIsAddedtoWishList(true) // Set state to true to update button style
+        } else {
+            // If the product is already in the wishlist, remove it
+            WishlistProducts.forEach((productId) => {
+                if (productId === id) {
+                    WishlistProducts.splice(WishlistProducts.indexOf(productId), 1) // Remove product from wishlist array
+                    setIsAddedtoWishList(false) // Set state to false to update button style
+                }
+            })
+        }
+    }
+
+    // useEffect hook to check if the product is already in the wishlist when the component is mounted
+    useEffect(() => {
+        // Iterate through the wishlist to check if the current product is added
+        WishlistProducts.forEach((productId) => {
+            if (productId === product.slug) {
+                setIsAddedtoWishList(true) // If product is in wishlist, update state to true
+            }
+        })
+    }, [product.slug, isAddedtoWishList]) // Re-run effect when product slug or wishlist status changes
+
+    return (
+        <div className="border border-gray-200 rounded cursor-pointer">
+            <div className="relative">
+                {/* Link to the product detail page */}
+                <Link href={`/shop/${product.slug}`}>
+                    <Image
+                        src={product?.image || ""}
+                        alt={product.name}
+                        height={267}
+                        width={312}
+                        className="w-full h-[267px] object-cover rounded"
+                    />
+                </Link>
+
+                {/* Display discount percentage if originalPrice exists */}
+                {product.originalPrice && (
+                    <span className="absolute top-2 right-2 bg-primary_color text-white text-xs px-2 py-1 rounded">
+                        -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                    </span>
+                )}
+
+                {/* Wishlist Button */}
+                <Button 
+                    onClick={() => {
+                        wishlistHandler(product.slug) // Trigger wishlist handler on button click
+                    }} 
+                    className={`absolute h-[40px] w-[40px] top-2 left-2 max-sm:right-4 rounded-full  hover:scale-110 transition-all ${isAddedtoWishList && "bg-primary_color hover:bg-primary_color"}`} 
+                    variant={"secondary"} 
+                    size={"sm"}
+                >
+                    <Image 
+                        src={"/icons/wishlist.svg"} 
+                        alt="Wishlist Icon" 
+                        width={40} 
+                        height={40} 
+                    />
+                </Button>
+            </div>
+
+            {/* Product Information */}
+            <div className="mt-2 p-2">
+                <h3 className="text-sm font-semibold">{product.name}</h3>
+
+                {/* Display product price and original price if available */}
+                <div className="flex items-center space-x-2 text-sm mt-1">
+                    <span className="text-primary_color font-bold">${product.price.toFixed(2)}</span>
+
+                    {/* If product has an original price, show it with strikethrough */}
+                    {product.originalPrice && (
+                        <span className="text-gray-500 line-through text-xs">
+                            ${product.originalPrice.toFixed(2)}
+                        </span>
+                    )}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Item

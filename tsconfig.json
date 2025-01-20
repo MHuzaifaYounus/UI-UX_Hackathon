@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "documentation/Day 4 - Dynamic Frontend Components - Restaurant Q-Commerce/code_snippets/itemCard"],
   "exclude": ["node_modules"]
 }

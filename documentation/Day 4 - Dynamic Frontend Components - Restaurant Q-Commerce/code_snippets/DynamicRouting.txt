@@ -1,0 +1,199 @@
+"use client"
+import React, { useEffect, useState } from 'react'
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb" // Breadcrumb components for navigation
+import { Slash } from 'lucide-react' // Slash separator for breadcrumb
+import Image from 'next/image' // Image component for optimized images
+import SocialMediaIcons from '@/components/socialIcons' // Social media sharing icons
+import { Food } from '@/types' // Type for food items
+import { client } from '@/sanity/lib/client' // Sanity CMS client for fetching data
+import { CartProducts } from '@/app/global' // Global cart state (products in cart)
+
+const ShopItem = ({ params: { itemId } }: { params: { itemId: string } }) => {
+    // State hooks to manage product data and UI status
+    const [products, setProducts] = useState<Food[]>([])
+    const [moreItems, setMoreItems] = useState<Food[]>([])
+    const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
+    const [showMsg, setShowMsg] = useState<boolean>(false)
+
+    // Function to add product to cart
+    function addtoCart(id: string) {
+        if (!CartProducts.find((productid) => productid === id)) {
+            CartProducts.push(id) // Adds the product to cart
+            setIsAddedToCart(true) // Sets the cart button state to 'added'
+            setShowMsg(true) // Displays the success message
+        }
+    }
+
+    // Fetching product data from Sanity CMS when the page loads
+    useEffect(() => {
+        async function getData() {
+            // Fetch specific product details using the itemId
+            const response: Food[] = await client.fetch(`*[_type == "food" && slug.current == $itemId ]{
+                name,
+                category,
+                price,
+                originalPrice,
+                tags,
+                "image":image.asset->url,
+                description,
+                available,
+                "slug": slug.current
+            }`, { itemId })
+            setProducts(response) // Set the fetched product data
+
+            // Fetch all products for displaying similar items
+            const response2: Food[] = await client.fetch(`*[_type == "food"]{
+                name,
+                category,
+                price,
+                originalPrice,
+                tags,
+                "image":image.asset->url,
+                description,
+                available,
+                "slug": slug.current
+            }`)
+            setMoreItems(response2) // Set the fetched similar products
+        }
+        getData() // Call getData function on initial load
+    }, [itemId]) // Dependency array ensures the data is fetched when the itemId changes
+
+    // Check if the current product is already added to the cart
+    useEffect(() => {
+        CartProducts.forEach((id) => {
+            if (id === itemId) {
+                setIsAddedToCart(true) // Marks product as added if found in the cart
+            }
+        })
+    }, [itemId])
+
+    // Show success message for 3 seconds after adding to the cart
+    useEffect(() => {
+        if (showMsg) {
+            setTimeout(() => { 
+                setShowMsg(false) // Hides the success message after 3 seconds
+            }, 3000)
+        }
+    }, [showMsg])
+
+    return (
+        <div>
+            {/* Success message when item is added to the cart */}
+            {showMsg && <div className='text-white bg-black border-2 border-primary_color rounded-xl fixed bottom-2 left-10 h-[50px] w-[250px] flex justify-center items-center'>
+                <p className='text-lg font-semibold'>Item Successfully Added</p>
+            </div>}
+
+            {/* Hero Section with Product Title and Breadcrumb */}
+            <div className="hero w-full h-[320px] menu_bg flex flex-col items-center justify-center ">
+                <h1 className='pb-5 font-bold text-5xl text-white'>Shop Details</h1>
+                <Breadcrumb>
+                    <BreadcrumbList>
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator>
+                            <Slash />
+                        </BreadcrumbSeparator>
+                        <BreadcrumbItem className='text-white'>
+                            <BreadcrumbLink href="/shop">Shop Details</BreadcrumbLink>
+                        </BreadcrumbItem>
+                    </BreadcrumbList>
+                </Breadcrumb>
+            </div>
+
+            {/* Product Display Section */}
+            <div className="section1 w-[80%] m-auto py-20 flex justify-between max-xl:w-[95%] max-xl:flex-col items-center">
+                {/* Product Images */}
+                <div className="left grid grid-cols-4 grid-rows-4 gap-2 max-xl:w-full">
+                    <div className=""><Image src={products[0]?.image || ""} alt="product image" width={132} height={129} /></div>
+                    <div className="col-span-3 row-span-4"><Image src={products[0]?.image || ""} alt="product image" width={491} height={596} /></div>
+                    <div className=""><Image src={products[0]?.image || ""} alt="product image" width={132} height={129} /></div>
+                    <div className=""><Image src={products[0]?.image || ""} alt="product image" width={132} height={129} /></div>
+                    <div className=""><Image src={products[0]?.image || ""} alt="product image" width={132} height={129} /></div>
+                </div>
+
+                {/* Product Details (Name, Description, Price, Add to Cart) */}
+                <div className="w-[50%] h-[718px] flex flex-col justify-between max-xl:pt-10 max-xl:w-full">
+                    <div className="px-4 py-2">
+                        <span className="inline-block bg-primary_color text-white text-xs font-semibold px-2 py-1 rounded-full">
+                            In stock
+                        </span>
+                    </div>
+                    <div className="px-4 pb-15 text-black border-b border-gray-400">
+                        <h2 className="text-5xl font-bold max-sm:text-2xl">{products[0]?.name}</h2>
+                        <p className="text-gray-600 w-[608px] text-lg mt-5 pb-16 max-sm:w-full max-sm:text-sm">{products[0]?.description}</p>
+                    </div>
+                    <div className="px-4 py-2">
+                        <span className="text-3xl font-bold ">${products[0]?.price}</span>
+                    </div>
+
+                    {/* Add to Cart Button */}
+                    <div className="px-4 py-4">
+                        <button className={`px-4 py-2 h-[50px] bg-primary_colortext-white text-sm font-medium rounded-md ${isAddedToCart ? "bg-gray-400" : "bg-primary_color"} text-white ml-4`} onClick={() => { addtoCart(itemId) }}>
+                            Add to cart
+                        </button>
+                    </div>
+
+                    {/* Product Category and Tags */}
+                    <div className="px-4 py-2">
+                        <div className="text-sm text-gray-600 flex flex-wrap flex-col gap-4">
+                            <span>Category: <strong>{products[0]?.category}</strong></span>
+                            <span>Tag: <strong>{products[0]?.tags}</strong></span>
+                        </div>
+                    </div>
+
+                    {/* Social Media Sharing Icons */}
+                    <div className="w-full items-start">
+                        <SocialMediaIcons />
+                    </div>
+                </div>
+            </div>
+
+            {/* Additional Product Information (Tabs for Description, Reviews, Key Benefits) */}
+            <div className="section2 w-[80%] m-auto py-20 max-xl:w-[95%] ">
+                <div className="border-b border-gray-300 flex space-x-4 text-sm">
+                    <button className="px-4 py-2 font-medium text-primary_color border-b-2 border-orange-500">Description</button>
+                    <button className="px-4 py-2 font-medium text-gray-600 hover:text-orange-500">Reviews ()</button>
+                </div>
+                <div className="mt-4 text-gray-700">
+                    <p>{products[0]?.description}</p>
+                </div>
+
+                {/* Key Benefits List */}
+                <div className="mt-6">
+                    <h3 className="text-lg font-bold text-gray-800">Key Benefits</h3>
+                    <ul className="list-disc pl-5 text-gray-700 mt-2 space-y-1">
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                        <li>Maecenas ullamcorper est et massa mattis condimentum.</li>
+                    </ul>
+                </div>
+
+                {/* Similar Products */}
+                <div className="mt-10">
+                    <h3 className="text-lg font-bold text-gray-800">Similar Products</h3>
+                    <div className="grid grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4 mt-4 ">
+                        {moreItems.map((product, index) => {
+                            if (index < 3) {
+                                return <div key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                                    <Image src={product?.image || ""} alt={product.name} height={267} width={267} className="w-full h-[267px] object-cover" />
+                                    <div className="p-4">
+                                        <h3 className="font-semibold text-lg">{product.name}</h3>
+                                        <p className="text-gray-600">${product.price}</p>
+                                    </div>
+                                </div>
+                            }
+                        })}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default ShopItem
