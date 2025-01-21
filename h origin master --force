@@ -1,0 +1,143 @@
+[33mcommit 82b88372a6785842ac634fe94b0d9257e02dba7a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Mon Jan 20 12:29:59 2025 +0500
+
+    added documentation
+
+[33mcommit c3dafaa0b5cb5aa63dae1d6a9b7ecc4ab4f18b27[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Mon Jan 20 11:45:05 2025 +0500
+
+    fix category
+
+[33mcommit 24bc3f7f976dc105cb12728fb836fcb84fa280ee[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Mon Jan 20 11:25:30 2025 +0500
+
+    added pagination
+
+[33mcommit 93b6399fe8c1c08997d1d91b0822f695257b36a7[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Mon Jan 20 10:50:42 2025 +0500
+
+    added order plced
+
+[33mcommit 74f55b5201333a7901ec3a520fefbfd8f798f861[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Mon Jan 20 09:47:48 2025 +0500
+
+    added wishlist feature
+
+[33mcommit 770418846fddc6166659d76ef8dd5af3b6a17f69[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Mon Jan 20 08:51:00 2025 +0500
+
+    added add to cart feature
+
+[33mcommit 9187c12db970fc8a2708454790aea10cc7f746f4[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Jan 19 22:28:13 2025 +0500
+
+    added search feature
+
+[33mcommit 4de07d97b5a226905eee2fc90c6e021598891aa5[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Jan 19 22:05:38 2025 +0500
+
+    added category feature
+
+[33mcommit df2da88f7cf907d127760ef0129591ac6cfcb9d6[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Jan 19 21:30:30 2025 +0500
+
+    added category feature
+
+[33mcommit c9414d3e639b3a32bd5d91633aae4ff43d34a7bb[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Jan 19 00:21:32 2025 +0500
+
+    fixed code snippets
+
+[33mcommit 1aa857ce9d333921df3b428702d3f5467e6b0ada[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Jan 19 00:12:26 2025 +0500
+
+    final toch
+
+[33mcommit 76648592485f3990f6fa07aa86aee8f0e80b5781[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Jan 19 00:02:04 2025 +0500
+
+    added Screen Shots
+
+[33mcommit 27d449c3c7ad7be39c0b0be0a751878266548198[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sat Jan 18 23:57:56 2025 +0500
+
+    added report
+
+[33mcommit bb4c31eb5f602599db6a3d3cf9f1e9caa1284bc1[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sat Jan 18 23:21:40 2025 +0500
+
+    Api integrated
+
+[33mcommit 4b969d7bf8bcfe8ee1a1235b01e9a267dc27694b[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sat Jan 18 18:58:39 2025 +0500
+
+    added documents of day 1 and day 2
+
+[33mcommit 53cb1c2a54d6bf861c2f3956fcb95e7c4f2c9cf0[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Tue Jan 14 10:49:50 2025 +0500
+
+    initialize sanity
+
+[33mcommit d384c32625811fa6d8dd9c49c8c9a941f5f122f1[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Fri Dec 20 09:26:14 2024 +0500
+
+    fix some design
+
+[33mcommit 1c256a765c9d90d665c24c6ae0b49554a37874ea[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Wed Dec 18 00:15:25 2024 +0500
+
+    add menu logic
+
+[33mcommit f5c00eccf66804bc8ecbd02f0d0d218f50c921c1[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Dec 8 23:59:03 2024 +0500
+
+    completed
+
+[33mcommit f0226dec5198f501e99a0e6e8c2dea3d29e70e6c[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Dec 8 23:55:11 2024 +0500
+
+    completed
+
+[33mcommit 3b3ee382f532cc15f5df902688b6544ff7311dbb[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Dec 8 23:09:01 2024 +0500
+
+    finalized
+
+[33mcommit fb6b4c5d82132d1682aedf08f0c477120e7c7e8a[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Dec 8 21:23:41 2024 +0500
+
+    fixed bugs
+
+[33mcommit a7f3351563b4c0e852585326306029b5fa60b5c3[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Dec 8 20:50:35 2024 +0500
+
+    initial commit
+
+[33mcommit d96962470d47d4acf9cf563443465195a13c9ab6[m
+Author: MHuzaifaYounus <huzaifayounus360@gmail.com>
+Date:   Sun Dec 8 07:33:13 2024 +0500
+
+    Initial commit from Create Next App

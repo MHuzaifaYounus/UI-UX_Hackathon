@@ -1,7 +1,7 @@
 "use client";
 import { client } from "@/sanity/lib/client";
 import { Food } from "@/types";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Item from "./item";
 
 const ProductGrid = ({ checkedCategories, searchInput }: { checkedCategories: string[], searchInput: string }) => {
