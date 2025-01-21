@@ -34,10 +34,11 @@ export default async function Home() {
 
         <Image
           className="absolute top-0 left-0 opacity-30"
-          src={"/img/heroback.svg"}
+          src={"/img/heroback.png"}
           alt="Search Icon"
           width={1920}
           height={950}
+          loading="lazy"
         />
         <div className="left w-[472px] min-h-[352px] text-white z-10 max-sm:w-[90%] pl-10 max-lg:pl-2 relative">
           <SideIcons />
@@ -67,10 +68,11 @@ export default async function Home() {
 
           <Image
 
-            src={"/img/heroright.svg"}
+            src={"/img/heroright.png"}
             alt="Search Icon"
             width={877}
             height={670}
+                loading="lazy"
           />
         </div>
 
@@ -103,24 +105,24 @@ export default async function Home() {
           <ul className="space-y-3">
 
             <li className="flex items-start space-x-2 text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" className="w-6 h-6 text-green-500">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className="w-6 h-6 text-green-500">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               <p className="text-gray-300">Lacus nisi, et ac dapibus sit eu velit in consequat.</p>
             </li>
 
 
             <li className="flex items-start space-x-2 text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" className="w-6 h-6 text-green-500">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className="w-6 h-6 text-green-500">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               <p className="text-gray-300">Quisque diam pellentesque bibendum non dui volutpat fringilla.</p>
             </li>
 
 
             <li className="flex items-start space-x-2 text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" className="w-6 h-6 text-green-500">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className="w-6 h-6 text-green-500">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               <p className="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </li>
@@ -140,6 +142,7 @@ export default async function Home() {
               alt="Search Icon"
               width={660}
               height={330}
+                  loading="lazy"
             />
           </div>
           <div className="">
@@ -148,6 +151,7 @@ export default async function Home() {
               alt="Search Icon"
               width={322}
               height={194}
+                  loading="lazy"
             />
           </div>
           <div className="">
@@ -156,6 +160,7 @@ export default async function Home() {
               alt="Search Icon"
               width={322}
               height={194}
+                  loading="lazy"
             />
           </div>
 
@@ -177,6 +182,7 @@ export default async function Home() {
               alt="Search Icon"
               width={305}
               height={328}
+                  loading="lazy"
             />
           </div>
           <div className="w-[305px] h-[328px] rounded-md mt-8">
@@ -185,6 +191,7 @@ export default async function Home() {
               alt="Search Icon"
               width={305}
               height={328}
+                  loading="lazy"
             />
           </div>
           <div className="w-[305px] h-[328px] rounded-md mt-8">
@@ -193,6 +200,7 @@ export default async function Home() {
               alt="Search Icon"
               width={305}
               height={328}
+                  loading="lazy"
             />
           </div>
           <div className="w-[305px] h-[328px] rounded-md mt-8">
@@ -200,6 +208,7 @@ export default async function Home() {
               src={"/img/frame34.svg"}
               alt="Search Icon"
               width={305}
+                  loading="lazy"
               height={328}
             />
           </div>
@@ -218,6 +227,7 @@ export default async function Home() {
               alt="Search Icon"
               width={362}
               height={356}
+                  loading="lazy"
             />
           </div>
 
@@ -227,6 +237,7 @@ export default async function Home() {
               alt="Search Icon"
               width={281}
               height={231}
+                  loading="lazy"
             />
           </div>
 
@@ -236,6 +247,7 @@ export default async function Home() {
               alt="Search Icon"
               width={244}
               height={306}
+                  loading="lazy"
             />
           </div>
 
@@ -245,6 +257,7 @@ export default async function Home() {
               alt="Search Icon"
               width={221}
               height={226}
+                  loading="lazy"
             />
           </div>
 
@@ -254,6 +267,7 @@ export default async function Home() {
               alt="Search Icon"
               width={161}
               height={168}
+                  loading="lazy"
             />
           </div>
 
@@ -262,6 +276,7 @@ export default async function Home() {
               src={"/img/frame46.svg"}
               alt="Search Icon"
               width={161}
+                  loading="lazy"
               height={168}
             />
           </div>
@@ -288,6 +303,7 @@ export default async function Home() {
                     alt="Search Icon"
                     width={56}
                     height={56}
+                        loading="lazy"
                   />
                 </div>
               </CardHeader>
@@ -303,6 +319,7 @@ export default async function Home() {
                     alt="Search Icon"
                     width={56}
                     height={56}
+                        loading="lazy"
                   />
                 </div>
               </CardHeader>
@@ -318,6 +335,7 @@ export default async function Home() {
                     alt="Search Icon"
                     width={56}
                     height={56}
+                        loading="lazy"
                   />
                 </div>
               </CardHeader>
@@ -351,6 +369,7 @@ export default async function Home() {
               alt="Search Icon"
               width={120}
               height={120}
+                  loading="lazy"
             />
             <h1 className="font-bold text-2xl max-sm:text-lg">Professional Chefs</h1>
             <h2 className="font-bold text-4xl max-sm:text-xl">420</h2>
@@ -361,6 +380,7 @@ export default async function Home() {
               alt="Search Icon"
               width={120}
               height={120}
+                  loading="lazy"
             />
             <h1 className="font-bold text-2xl max-sm:text-lg">Items of fodd</h1>
             <h2 className="font-bold text-4xl max-sm:text-xl">320</h2>
@@ -371,6 +391,7 @@ export default async function Home() {
               alt="Search Icon"
               width={120}
               height={120}
+                  loading="lazy"
             />
             <h1 className="font-bold text-2xl max-sm:text-lg">Years of experience</h1>
             <h2 className="font-bold text-4xl max-sm:text-xl">20+</h2>
@@ -381,6 +402,7 @@ export default async function Home() {
               alt="Search Icon"
               width={120}
               height={120}
+                  loading="lazy"
             />
             <h1 className="font-bold text-2xl max-sm:text-lg">Happy Customers</h1>
             <h2 className="font-bold text-4xl max-sm:text-xl">220</h2>

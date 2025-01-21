@@ -45,10 +45,11 @@ const Item = ({ product }: { product: Food }) => {
             <div className="relative">
                 <Link href={`/shop/${product?.slug}`}>
                     <Image
-                        src={product?.image || ""}
+                        src={product?.image || "/img/sample.jpg"}
                         alt={product?.name}
                         height={267}
                         width={312}
+                        loading='lazy'
                         className="w-full h-[267px] object-cover rounded"
                     />
                 </Link>

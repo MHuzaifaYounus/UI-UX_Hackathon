@@ -8,6 +8,7 @@ const ProductGrid = ({ checkedCategories, searchInput }: { checkedCategories: st
   const [filteredProducts, setFilteredProducts] = useState<Food[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(6);
+  const [error, setError] = useState<string | null>(null)
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
@@ -27,7 +28,8 @@ const ProductGrid = ({ checkedCategories, searchInput }: { checkedCategories: st
 
   useEffect(() => {
     async function getData() {
-      const response: Food[] = await client.fetch(`*[_type == "food"]{
+      try {
+        const response: Food[] = await client.fetch(`*[_type == "food"]{
         name,
         category,
         price,
@@ -39,33 +41,37 @@ const ProductGrid = ({ checkedCategories, searchInput }: { checkedCategories: st
         "slug": slug.current
       }`);
 
-      if (checkedCategories.length !== 0 || searchInput) {
-        const filtered: Food[] = response.filter((e) => {
-          const matchesCategory = checkedCategories.length === 0 || 
-            checkedCategories.some(
-              (category) => category.toLowerCase() === e.category.toLowerCase()
-            );
-        
-          const matchesSearch = !searchInput || 
-            e.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-            e.tags.some((tag) => tag.toLowerCase().includes(searchInput.toLowerCase()));
-        
-          // Include the item if it matches either condition or both
-          return matchesCategory && matchesSearch;
-        });
-        
-        console.log(filtered)
-        setFilteredProducts(filtered);
-      } else {
-        setFilteredProducts(response);
+        if (checkedCategories.length !== 0 || searchInput) {
+          const filtered: Food[] = response.filter((e) => {
+            const matchesCategory = checkedCategories.length === 0 ||
+              checkedCategories.some(
+                (category) => category.toLowerCase() === e.category.toLowerCase()
+              );
+
+            const matchesSearch = !searchInput ||
+              e.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+              e.tags.some((tag) => tag.toLowerCase().includes(searchInput.toLowerCase()));
+
+            // Include the item if it matches either condition or both
+            return matchesCategory && matchesSearch;
+          });
+
+          console.log(filtered)
+          setFilteredProducts(filtered);
+        } else {
+          setFilteredProducts(response);
+        }
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+        setError("Unable to load products. Please try again later.");
+
       }
-    
     }
     getData();
   }, [checkedCategories, searchInput]);
 
   useEffect(() => {
-    setCurrentPage(1); 
+    setCurrentPage(1);
   }, [filteredProducts]);
 
   return (
@@ -95,20 +101,22 @@ const ProductGrid = ({ checkedCategories, searchInput }: { checkedCategories: st
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
-        {paginateProducts().map((product, index) => (
-          <Item key={index} product={product} />
-        ))}
-      </div>
+      {error ? <div className="errormsg pt-10 pb-10 w-full text-3xl text-red-500 flex justify-center items-center">
+        <h1 className="font-semibold">{error}</h1>
+      </div> :
+        <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
+          {paginateProducts().map((product, index) => (
+            <Item key={index} product={product} />
+          ))}
+        </div>}
 
       {/* Pagination */}
       <div className="flex justify-center mt-6">
         <button
           onClick={() => changeCurrentPage("Prev")}
           disabled={currentPage === 1}
-          className={`px-3 py-1 mx-1 text-gray-500 bg-gray-100 rounded hover:bg-primary_color hover:text-white ${
-            currentPage === 1 && "opacity-50 cursor-not-allowed"
-          }`}
+          className={`px-3 py-1 mx-1 text-gray-500 bg-gray-100 rounded hover:bg-primary_color hover:text-white ${currentPage === 1 && "opacity-50 cursor-not-allowed"
+            }`}
         >
           &lt;&lt;
         </button>
@@ -118,9 +126,8 @@ const ProductGrid = ({ checkedCategories, searchInput }: { checkedCategories: st
         <button
           onClick={() => changeCurrentPage("Next")}
           disabled={currentPage === totalPages}
-          className={`px-3 py-1 mx-1 text-gray-500 bg-gray-100 rounded hover:bg-primary_color hover:text-white ${
-            currentPage === totalPages && "opacity-50 cursor-not-allowed"
-          }`}
+          className={`px-3 py-1 mx-1 text-gray-500 bg-gray-100 rounded hover:bg-primary_color hover:text-white ${currentPage === totalPages && "opacity-50 cursor-not-allowed"
+            }`}
         >
           &gt;&gt;
         </button>

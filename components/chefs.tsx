@@ -8,9 +8,11 @@ import React, { useEffect, useState } from "react";
 
 const ChefGrid = () => {
   const [chefs, setChefs] = useState<Chef[]>([])
+  const [error, setError] = useState<string|null>(null)
   useEffect(() => {
     async function getData() {
-      const response: Chef[] = await client.fetch(`*[_type == "chef"]{
+      try {
+        const response: Chef[] = await client.fetch(`*[_type == "chef"]{
     name,
     position,
     experience,
@@ -19,8 +21,14 @@ const ChefGrid = () => {
     description,
     available
   }`)
-      console.log(response)
-      setChefs(response)
+        console.log(response)
+        setChefs(response)
+      } catch (error) {
+        console.error("Failed to fetch Chefs:", error);
+        setError("Unable to load Chefs. Please try again later."); 
+       
+
+      }
     }
     getData()
   }, [])
@@ -28,6 +36,9 @@ const ChefGrid = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen p-10 max-sm:p-3">
+     {error ? <div className="errormsg w-full text-3xl text-red-500 flex justify-center items-center">
+          <h1 className="font-semibold">{error}</h1>
+        </div> :
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {chefs.map((chef, index) => (
           <div
@@ -35,10 +46,11 @@ const ChefGrid = () => {
             className="bg-white rounded-lg shadow-lg overflow-hidden "
           >
             <Image
-              src={chef.image || ""}
+              src={chef.image || "/img/sample.jpg"}
               alt={chef.name}
               height={379}
               width={200}
+              loading="lazy"
               className="w-full h-[379px] object-cover"
             />
             <div className="p-4">
@@ -53,7 +65,7 @@ const ChefGrid = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div>}
     </div>
   );
 };
