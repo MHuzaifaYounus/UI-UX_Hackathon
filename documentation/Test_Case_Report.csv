@@ -1,0 +1,40 @@
+"Test Case 
+ID",Test Case Description,Test Steps,Expected Result,Actual Result,Status,"Severity 
+Level","Assigned 
+To",Remarks
+TC001,Ensure products are displayed correctly on the homepage.,"1. Navigate to the homepage.
+2. Check if all products are displayed.
+3. Verify product count matches the database.",All products are displayed with correct details.,All products displayed correctly.,Passed,Low,N/A,No issues observed.
+TC002,Validate filters and search functionality provide accurate results.,"1. Enter search keyword in the search bar.
+2. Apply category filters.
+3. Verify displayed products match the criteria.",Search and filter results match user input criteria.,Filters and search provided accurate results.,Passed,Medium,N/A,Functionality works as intended.
+TC003,"Test add, update, and remove operations in the cart.","1. Add a product to the cart.
+2. Update the quantity in the cart.
+3. Remove a product from the cart.","Cart operations (add, update, remove) work as expected.",Cart operations worked without any issues.,Passed,Medium,N/A,Cart operations are seamless.
+TC004,Verify individual product detail pages load correctly with dynamic routing.,"1. Click on a product from the product grid.
+2. Check if the detail page loads correctly.
+3. Verify product details match the database.",Product detail page loads correctly with accurate details.,Product detail pages loaded with accurate details.,Passed,Low,N/A,Dynamic routing is functioning properly.
+TC005,Test Item Component Rendering with Cypress,"1.Generate a spec test item component in cypress
+2. test the item component in cypress",Cypress should show green tick,Cypress Shows An error First But fixed,Passed,High,N/A,Issue with missing 'slug' property was fixed.
+TC006,Test Product Grid Rendering With Cypress,"1.Generate a spec test product grid 
+component in cypress
+2. test the item component in cypress",Cypress should show green tick,Cypress Shows An error,Error,Medium,N/A,Not Fixed
+TC007,API Test: Fetch Products from Sanity CMS,"1. Fetch products from Sanity CMS using the API. 
+2. Validate that the product data (name, description, image, price) 
+is returned correctly.","The API should return correct product data, including 
+name, description, image, and price.","The API successfully retrieves product data from
+ Sanity CMS with accurate product details.",Passed,High,N/A,"Sanity CMS API call successfully tested
+ for product data retrieval."
+TC008,Error Handling for API Requests,"1.Used try catch block to catch the error in the 
+state
+2.Shw the Error On the UI",Error Msg Should show on the UI ,Error Msg Showed ,Passed,Medium,N/A,Succcessfully showws Error Msg when error occur
+TC009,Initial Loading time Test,"1.load the website in different device
+2.Note the loading time",Loading time should be less than 2 seconds,1.8 seconds sometimes 2 seconds,Passed,Low,N/A,as expected 
+TC010,Different Borwser Checking ,"1.open Website on different browser 
+2. Check for any issues ",Website should render as expected,Website Rendered as expected,Passed,Medium,N/A,Successful
+TC011,Check Website On different Devices,"1.Use BrowserStack to poen website on 
+different devices.
+2.Then Check website on physical mobile",Website should render as expected,Website Rendered as expected,Passed,High,N/A,Successful
+TC012,Input Validation Testing,1.Check for shipping / Billing / address form,"Email Validation required , Password Digits Length , 
+required fields mujst Field","Email Validation required , Password Digits Length , 
+required fields mujst Field",Passed,High,N/A,Form Validated Properly

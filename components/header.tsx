@@ -40,9 +40,7 @@ const Header: React.FC = () => {
                         <li className="hover:text-primary_color">
                             <Link href="/shop">Shop</Link>
                         </li>
-                        <li className="hover:text-primary_color">
-                            <Link href="/contact">Contact</Link>
-                        </li>
+                    
                     </ul>
                 </nav>
 
@@ -118,9 +116,7 @@ const Header: React.FC = () => {
                     <li className="hover:text-primary_color">
                         <Link href="/shop">Shop</Link>
                     </li>
-                    <li className="hover:text-primary_color">
-                        <Link href="/contact">Contact</Link>
-                    </li>
+                  
                 </ul>
             </nav>}
         </header>

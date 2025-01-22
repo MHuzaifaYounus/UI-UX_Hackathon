@@ -66,7 +66,7 @@ function ShippingForm() {
                 <div>
                     <h2 className="text-xl font-semibold mb-6">Shipping Address</h2>
                     <form
-                        className="grid grid-cols-2 max-md:grid-cols-1 max-md:grid-rows-11 gap-4"
+                        className="grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-6 max-md:gap-2"
                         onSubmit={handleSubmit}
                     >
                         <input
@@ -75,7 +75,7 @@ function ShippingForm() {
                             value={formData.firstName}
                             onChange={handleChange}
                             placeholder="First name"
-                            className="border p-2 rounded max-md:col-span-2"
+                            className="border p-2 rounded w-full max-md:col-span-2 max-md:p-1 max-md:h-12"
                             required
                         />
                         <input
@@ -84,7 +84,7 @@ function ShippingForm() {
                             value={formData.lastName}
                             onChange={handleChange}
                             placeholder="Last name"
-                            className="border p-2 rounded max-md:col-span-2"
+                            className="border p-2 rounded w-full max-md:col-span-2 max-md:p-1 max-md:h-12"
                             required
                         />
                         <input
@@ -93,7 +93,7 @@ function ShippingForm() {
                             value={formData.email}
                             onChange={handleChange}
                             placeholder="Email address"
-                            className="border p-2 rounded col-span-2 sm:col-span-1"
+                            className="border p-2 rounded w-full max-md:col-span-2 max-md:p-1 max-md:h-12"
                             required
                         />
                         <input
@@ -102,7 +102,7 @@ function ShippingForm() {
                             value={formData.phone}
                             onChange={handleChange}
                             placeholder="Phone number (10 digits)"
-                            className="border p-2 rounded max-md:col-span-2"
+                            className="border p-2 rounded w-full max-md:col-span-2 max-md:p-1 max-md:h-12"
                             pattern="\d{10}"
                             title="Phone number must be 10 digits."
                         />
@@ -112,13 +112,13 @@ function ShippingForm() {
                             value={formData.company}
                             onChange={handleChange}
                             placeholder="Company"
-                            className="border p-2 rounded max-md:col-span-2"
+                            className="border p-2 rounded w-full max-md:col-span-2 max-md:p-1 max-md:h-12"
                         />
                         <select
                             name="country"
                             value={formData.country}
                             onChange={handleChange}
-                            className="border p-2 rounded max-md:col-span-2"
+                            className="border p-2 rounded w-full max-md:col-span-2 max-md:p-1 max-md:h-12"
                             required
                         >
                             <option value="">Choose country</option>
@@ -130,7 +130,7 @@ function ShippingForm() {
                             name="city"
                             value={formData.city}
                             onChange={handleChange}
-                            className="border p-2 rounded max-md:col-span-2"
+                            className="border p-2 rounded w-full max-md:col-span-2 max-md:p-1 max-md:h-12"
                             required
                         >
                             <option value="">Choose city</option>
@@ -144,7 +144,7 @@ function ShippingForm() {
                             value={formData.zipCode}
                             onChange={handleChange}
                             placeholder="Zip code (5 digits)"
-                            className="border p-2 rounded max-md:col-span-2"
+                            className="border p-2 rounded w-full max-md:col-span-2 max-md:p-1 max-md:h-12"
                             pattern="\d{5}"
                             title="Zip code must be 5 digits."
                             required
@@ -155,7 +155,7 @@ function ShippingForm() {
                             value={formData.address1}
                             onChange={handleChange}
                             placeholder="Address 1"
-                            className="border p-2 rounded col-span-2"
+                            className="border p-2 rounded w-full col-span-2 max-md:p-1 max-md:h-12"
                             required
                         />
                         <input
@@ -164,12 +164,12 @@ function ShippingForm() {
                             value={formData.address2}
                             onChange={handleChange}
                             placeholder="Address 2"
-                            className="border p-2 rounded col-span-2"
+                            className="border p-2 rounded w-full col-span-2 max-md:p-1 max-md:h-12"
                         />
-                        <div className="mt-6">
+                        <div className="mt-6 w-full col-span-2 max-md:p-1 max-md:h-12">
                             <label className="flex flex-col">
                                 <h2 className="font-bold text-xl">Billing Address</h2>
-                                <div className="flex">
+                                <div className="flex items-center space-x-2">
                                     <input
                                         type="checkbox"
                                         name="billingSameAsShipping"
@@ -177,25 +177,29 @@ function ShippingForm() {
                                         onChange={handleChange}
                                         className="mr-2"
                                     />
-                                    Same as shipping address
+                                    <span>Same as shipping address</span>
                                 </div>
                             </label>
                         </div>
                         <div className="flex justify-between items-center mt-6 max-sm:flex-col">
                             <button
                                 type="button"
-                                className="bg-white w-[50%] max-sm:w-full h-[58px] text-black px-6 py-2 hover:bg-gray-500 border-2 border-gray-300"
+                                className="bg-white w-[48%] max-sm:w-full h-[58px] text-black px-6 py-2 hover:bg-gray-500 border-2 border-gray-300 max-md:h-[40px] flex justify-center items-center"
                             >
                                 <Link href="/cart">&lt; Back to cart</Link>
                             </button>
                             <button
                                 type="submit"
-                                className="bg-primary_color w-[50%] max-sm:w-full h-[58px] text-white px-6 py-2 max-sm:mt-5 hover:bg-primary_color"
+                                className="bg-primary_color w-[48%] max-sm:w-full h-[58px] max-md:h-[40px] text-white px-6 py-2 max-sm:mt-5 hover:bg-primary_color
+                                flex justify-center items-center"
                             >
                                 Place an Order &rarr;
                             </button>
                         </div>
                     </form>
+
+
+
                 </div>}
         </div>
     );
