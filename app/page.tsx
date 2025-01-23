@@ -55,7 +55,7 @@ export default async function Home() {
 
 
           <p className="text-gray-400 mt-4 max-sm:text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius sed pharetra dictum neque massa congue.
+          Experience flavors that delight, crafted with care to satisfy every craving and taste.
           </p>
 
 
@@ -96,11 +96,9 @@ export default async function Home() {
 
 
           <p className="text-gray-400 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.
-            Urna, elit augue urna, vitae feugiat pretium donec id elementum. Ultrices mattis sed vitae mus risus.
-            Lacus nisi, et ac dapibus sit eu velit in consequat.
+          Indulge in culinary excellence with our handcrafted recipes, designed to bring out the best in every bite. From fresh ingredients to innovative flavors, we serve only the finest.
           </p>
-          className
+          
 
           <ul className="space-y-3">
 
@@ -108,7 +106,7 @@ export default async function Home() {
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className="w-6 h-6 text-green-500">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
-              <p className="text-gray-300">Lacus nisi, et ac dapibus sit eu velit in consequat.</p>
+              <p className="text-gray-300">Our passion for creating flavorful dishes is matched by our dedication to providing a delightful experience that keeps you coming back for more.</p>
             </li>
 
 
@@ -116,7 +114,7 @@ export default async function Home() {
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className="w-6 h-6 text-green-500">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
-              <p className="text-gray-300">Quisque diam pellentesque bibendum non dui volutpat fringilla.</p>
+              <p className="text-gray-300">Every dish is crafted with precision and care, ensuring you enjoy nothing but the best. </p>
             </li>
 
 
@@ -124,7 +122,7 @@ export default async function Home() {
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className="w-6 h-6 text-green-500">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
-              <p className="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p className="text-gray-300">Delivering premium quality food with unmatched taste and presentation. </p>
             </li>
           </ul>
 
@@ -172,7 +170,7 @@ export default async function Home() {
           Food Category
         </div>
         <h1 className="text-4xl font-bold leading-tight max-sm:text-3xl">
-          <span className="text-primary_color">Ch</span>oose Food Item
+          <span className="text-primary_color">Our</span> Food Categories
 
         </h1>
         <div className="flex w-full flex-wrap justify-between items-center pt-20 max-md:justify-center">
@@ -292,7 +290,7 @@ export default async function Home() {
             And Experienced
           </h1>
           <p className="text-gray-400 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum. Urna, elit augue urna, vitae feugiat pretium donec id elementum. Ultrices mattis sed vitae mus risus. Lacus nisi, et ac dapibus sit eu velit in consequat.
+          Delight your senses with exceptional flavors crafted by skilled hands. Our culinary expertise ensures every bite is a masterpiece, blending tradition and innovation to perfection.
           </p>
           <div className="flex w-[400px] max-sm:w-[90%] m-auto justify-between ml-[-20px]">
             <Card className="bg-transparent text-white border-none">
@@ -346,7 +344,7 @@ export default async function Home() {
           </div>
           <div className="w-[374px] h-[93px] bg-white rounded-md flex justify-evenly items-center text-black relative max-sm:w-full" >
             <div className="h-full w-3 bg-primary_color absolute left-0 rounded-s-md" />
-            <h1 className="text-5xl font-bold text-primary_color">30+</h1>
+            <h1 className="text-5xl font-bold text-primary_color">20+</h1>
             <div className="">
               <h3 className="text-xl">Years of</h3>
               <h2 className="font-bold text-2xl">Experience</h2>
@@ -382,7 +380,7 @@ export default async function Home() {
               height={120}
                   loading="lazy"
             />
-            <h1 className="font-bold text-2xl max-sm:text-lg">Items of fodd</h1>
+            <h1 className="font-bold text-2xl max-sm:text-lg">Items of food</h1>
             <h2 className="font-bold text-4xl max-sm:text-xl">320</h2>
           </div>
           <div className="item w-[218px] text-white h-[247px] flex flex-col justify-between items-center mt-7">
@@ -484,12 +482,12 @@ export default async function Home() {
 
 
             <p className="text-gray-400 mt-4 max-sm:text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum. Urna, elit augue urna,
+            From sourcing the finest ingredients to crafting each dish with care, our process ensures quality and freshness at every stage.
             </p>
 
             <div className="flex items-center">
               <button className="bg-transparent border-2 border-primary_color text-white px-6 py-2 rounded-[30px] hover:bg-primary_color transition w-[190px] h-[60px] max-sm:w-[130px] max-sm:text-xs max-sm:h-[50px]">
-                Read More
+                <Link href={"/blog"}>Read More</Link>
               </button>
               <div className="flex items-center pl-5">
                 <div className="w-[60px] h-[60px] rounded-full bg-primary_color flex justify-center items-center">

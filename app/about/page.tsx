@@ -1,5 +1,5 @@
 "use client"
-import React, { useState }  from 'react'
+import React, { useState } from 'react'
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -16,7 +16,7 @@ import Menu from '@/components/menu'
 const greatVibes = Great_Vibes({ weight: ["400"], subsets: ["latin"] })
 
 const AboutPage = () => {
-    const [activeMenu, setActiveMenu] = useState<number>(0)
+    const [activeMenu, setActiveMenu] = useState<string>("Appetizer")
     return (
         <div>
             <div className="hero w-full h-[320px] menu_bg flex flex-col items-center justify-center ">
@@ -41,7 +41,7 @@ const AboutPage = () => {
                 <div className="left flex flex-col md:flex-row items-center justify-center p-4 space-y-4 md:space-y-0 md:space-x-4 w-[50%] max-lg:w-full">
                     <div className="flex-1">
                         <Image
-                            src="/img/about1.svg" 
+                            src="/img/about1.svg"
                             alt="Tacos"
                             height={536}
                             width={100}
@@ -274,7 +274,7 @@ const AboutPage = () => {
 
             </div>
 
-            <div className="section5  w-[80%] min-h-[850px] flex flex-col justify-between mb-10 mt-20  m-auto items-center max-sm:w-[90%]">
+            <div className="section5  w-[80%] min-h-[550px] flex flex-col justify-between mb-10 mt-20  m-auto items-center max-sm:w-[90%]">
                 <div className=" text-center max-w-[428px]">
                     <h1 className="text-4xl font-bold leading-tight max-sm:text-3xl max-lg:pt-10">
                         <span className="text-primary_color">Ou</span>r Food Menu
@@ -284,20 +284,19 @@ const AboutPage = () => {
                 </div>
                 <div className="w-[80%] flex justify-center max-lg:pt-10 max-sm:w-full font-medium text-xl max-sm:text-sm max-lg:w-full max-lg:flex-col items-center ">
                     <ul className="flex w-[50%] justify-evenly  max-sm:w-[90%] ">
-                        <li id="0" className={`${activeMenu === 0 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(0) }}>BreakFast</li>
-                        <li id="1" className={`${activeMenu === 1 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(1) }}>Lunch</li>
-                        <li id="2" className={`${activeMenu === 2 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(2) }}>Dinner</li>
-                        <li id="3" className={`${activeMenu === 3 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(3) }}>Desert</li>
+                        <li id="0" className={`${activeMenu === "Appetizer" && "active"} cursor-pointer`} onClick={() => { setActiveMenu("Appetizer") }}>Appetizer</li>
+                        <li id="5" className={`${activeMenu === "Main Course" && "active"} cursor-pointer`} onClick={() => { setActiveMenu("Main Course") }}>Main Course</li>
+                        <li id="3" className={`${activeMenu === "Dessert" && "active"} cursor-pointer`} onClick={() => { setActiveMenu("Dessert") }}>Dessert</li>
                     </ul>
                     <ul className="flex w-[30%] justify-between max-lg:pt-4 max-sm:w-[50%]">
-                        <li id="4" className={`${activeMenu === 4 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(4) }}>Soups</li>
-                        <li id="5" className={`${activeMenu === 5 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(5) }}>Snacks</li>
-                        <li id="6" className={`${activeMenu === 6 && "active"} cursor-pointer`} onClick={() => { setActiveMenu(6) }}>Drink</li>
+                        <li id="4" className={`${activeMenu === "Sandwich" && "active"} cursor-pointer`} onClick={() => { setActiveMenu("Sandwich") }}>Sandwich</li>
+                        <li id="1" className={`${activeMenu === "Rolls" && "active"} cursor-pointer`} onClick={() => { setActiveMenu("Rolls") }}>Rolls</li>
+                        <li id="6" className={`${activeMenu === "Drink" && "active"} cursor-pointer`} onClick={() => { setActiveMenu("Drink") }}>Drink</li>
                     </ul>
                 </div>
                 <div className="flex w-full justify-center items-center max-lg:flex-col ">
 
-                    <Menu activeMenu={activeMenu} />
+                    <Menu activeMenu={activeMenu} theme="White" />
 
                 </div>
 
