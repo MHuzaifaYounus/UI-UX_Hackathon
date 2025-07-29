@@ -191,7 +191,6 @@ const AboutPage = () => {
                     {/* Team Member Card */}
                     {[
                         { name: "Mark Henry", role: "Owner" },
-                        { name: "Lucky Helen", role: "Chef" },
                         { name: "Moon Henry", role: "Founder" },
                         { name: "Tom Monrow", role: "Specialist" },
                     ].map((member, index) => (

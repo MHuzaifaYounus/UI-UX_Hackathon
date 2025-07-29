@@ -26,19 +26,13 @@ const Header: React.FC = () => {
                             <Link href="/">Home</Link>
                         </li>
                         <li className="hover:text-primary_color">
-                            <Link href="/menu">Menu</Link>
-                        </li>
-                        <li className="hover:text-primary_color">
-                            <Link href="/blog">Blog</Link>
+                            <Link href="/shop">Menu</Link>
                         </li>
                         <li className="hover:text-primary_color">
                             <Link href="/faqs">FAQS</Link>
                         </li>
                         <li className="hover:text-primary_color">
                             <Link href="/about">About</Link>
-                        </li>
-                        <li className="hover:text-primary_color">
-                            <Link href="/shop">Shop</Link>
                         </li>
                     
                     </ul>
@@ -105,16 +99,10 @@ const Header: React.FC = () => {
                         <Link href="/menu">Menu</Link>
                     </li>
                     <li className="hover:text-primary_color">
-                        <Link href="/blog">Blog</Link>
-                    </li>
-                    <li className="hover:text-primary_color">
                         <Link href="/faqs">FAQS</Link>
                     </li>
                     <li className="hover:text-primary_color">
                         <Link href="/about">About</Link>
-                    </li>
-                    <li className="hover:text-primary_color">
-                        <Link href="/shop">Shop</Link>
                     </li>
                   
                 </ul>

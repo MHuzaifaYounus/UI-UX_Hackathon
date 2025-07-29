@@ -11,21 +11,10 @@ import TestimonialCard from "@/components/testimonal";
 import Link from "next/link";
 import MenuSection from "@/components/MenuSection";
 import { client } from "@/sanity/lib/client";
-import { Chef } from "@/types";
 
 const greatVibes = Great_Vibes({ weight: ["400"], subsets: ["latin"] })
 
 export default async function Home() {
-  const chefs: Chef[] = await client.fetch(`*[_type == "chef"]{
-  name,
-  position,
-  experience,
-  specialty,
-  "image":image.asset->url,
-  description,
-  available
-}`)
-
 
 
   return (
@@ -412,58 +401,6 @@ export default async function Home() {
       {/* section 6 */}
       <MenuSection />
 
-      <div className="section7 w-[80%] min-h-[489px] flex flex-col justify-between pb-10 pt-10 text-white m-auto items-center">
-        <div className={`text-primary_color text-3xl mb-2 max-sm:text-2xl ${greatVibes.className}`}>
-          Chefs
-        </div>
-        <h1 className="text-4xl font-bold leading-tight max-sm:text-3xl">
-          <span className="text-primary_color">Me</span>et Our Chefs
-
-        </h1>
-        <div className="flex w-full flex-wrap justify-between items-center pt-20 max-md:justify-center">
-          {chefs.map((chef, index) => {
-            if (index <= 3) {
-              return <div key={index} className="w-[312px] h-[391px] rounded-md mt-8 relative">
-                <div className="absolute bottom-0 left-0 h-[70px] w-[200px] bg-gray-200 p-3 text-black">
-                    <h1 className="font-semibold text-lg">{chef.name}</h1>
-                    <p>{chef.position}</p>
-                </div>
-                <Image
-                  src={chef.image || ""}
-                  alt="Search Icon"
-                  width={312}
-                  height={391}
-                />
-              </div>
-            }
-
-          })}
-
-
-
-        </div>
-        <div className="w-full flex justify-center pt-20">
-          <Button className="bg-transparent border-primary_color border-2 rounded-[25px] w-[155px] h-[50px]"><Link href={"/chefs"}>See More</Link></Button>
-        </div>
-
-      </div>
-
-      <div className="section8 w-[80%] min-h-[489px] flex flex-col justify-between pb-10 pt-10 text-white m-auto">
-        <div className={`text-primary_color text-3xl mb-2 max-sm:text-2xl text-start ${greatVibes.className}`}>
-          Testimonals
-        </div>
-        <h1 className="text-4xl font-bold leading-tight max-sm:text-3xl text-start">
-          <span className="text-primary_color">Wh</span>at our client are saying
-
-        </h1>
-
-        <TestimonialCard />
-
-
-
-
-      </div>
-
       <div className="section9 w-full flex justify-center items-center min-h-[468px] relative frame9_bg  py-10 mt-20 ">
         <div className="w-full h-full bg-black opacity-50 absolute top-0"></div>
         <div className="w-[70%] flex justify-end max-sm:w-full max-sm:justify-center">
@@ -486,9 +423,7 @@ export default async function Home() {
             </p>
 
             <div className="flex items-center">
-              <button className="bg-transparent border-2 border-primary_color text-white px-6 py-2 rounded-[30px] hover:bg-primary_color transition w-[190px] h-[60px] max-sm:w-[130px] max-sm:text-xs max-sm:h-[50px]">
-                <Link href={"/blog"}>Read More</Link>
-              </button>
+              
               <div className="flex items-center pl-5">
                 <div className="w-[60px] h-[60px] rounded-full bg-primary_color flex justify-center items-center">
                   <Image
@@ -507,132 +442,24 @@ export default async function Home() {
 
       </div>
 
-      <div className="section10 w-[80%] min-h-[489px] flex flex-col justify-between pb-10 pt-10 text-white m-auto items-center max-sm:w-[95%]">
-        <div className={`text-primary_color text-3xl mb-2 max-sm:text-2xl ${greatVibes.className}`}>
-          Blog Post
+      <div className="section8 w-[80%] min-h-[489px] flex flex-col justify-between pb-10 pt-10 text-white m-auto">
+        <div className={`text-primary_color text-3xl mb-2 max-sm:text-2xl text-start ${greatVibes.className}`}>
+          Testimonals
         </div>
-        <h1 className="text-4xl font-bold leading-tight max-sm:text-2xl">
-          <span className="text-primary_color">La</span>test News & Blog
+        <h1 className="text-4xl font-bold leading-tight max-sm:text-3xl text-start">
+          <span className="text-primary_color">Wh</span>at our client are saying
 
         </h1>
-        <div className="flex w-full flex-wrap justify-between items-center pt-20 max-md:justify-center">
-          <Card className="bg-transparent border-none w-[424px] h-[569px] text-white  max-[500px]:p-4">
-            <CardHeader className="">
-              <Image
-                src={"/img/frame101.svg"}
-                alt="Search Icon"
-                width={423}
-                height={349}
-              />
-            </CardHeader>
-            <CardContent className="h-[220px] flex flex-col justify-between">
-              <h2 className="text-lg text-primary_color">10 February 2022</h2>
-              <h1 className="text-2xl font-bold">Pellentesque Non Efficitur Mi Aliquam Convallis Mi Quis</h1>
-              <div className="flex w-full justify-between items-center">
-                <p>Learn More</p>
-                <div className="w-[76px] flex justify-between">
-                  <Image
-                    src={"/icons/like.svg"}
-                    alt="Search Icon"
-                    width={20}
-                    height={20}
-                  />
-                  <Image
-                    src={"/icons/comment.svg"}
-                    alt="Search Icon"
-                    width={20}
-                    height={20}
-                  />
-                  <Image
-                    src={"/icons/share.svg"}
-                    alt="Search Icon"
-                    width={20}
-                    height={20}
-                  />
-                </div>
-              </div>
 
-            </CardContent>
-          </Card>
-          <Card className="bg-transparent border-none w-[424px] h-[569px] text-white max-[500px]:p-4">
-            <CardHeader className="">
-              <Image
-                src={"/img/frame102.svg"}
-                alt="Search Icon"
-                width={423}
-                height={349}
-              />
-            </CardHeader>
-            <CardContent className="h-[220px] flex flex-col justify-between">
-              <h2 className="text-lg text-primary_color">10 February 2022</h2>
-              <h1 className="text-2xl font-bold">Curabitur rutrum velit ac congue malesuada</h1>
-              <div className="flex w-full justify-between items-center">
-                <p>Learn More</p>
-                <div className="w-[76px] flex justify-between">
-                  <Image
-                    src={"/icons/like.svg"}
-                    alt="Search Icon"
-                    width={20}
-                    height={20}
-                  />
-                  <Image
-                    src={"/icons/comment.svg"}
-                    alt="Search Icon"
-                    width={20}
-                    height={20}
-                  />
-                  <Image
-                    src={"/icons/share.svg"}
-                    alt="Search Icon"
-                    width={20}
-                    height={20}
-                  />
-                </div>
-              </div>
+        <TestimonialCard />
 
-            </CardContent>
-          </Card>
-          <Card className="bg-transparent border-none w-[424px] h-[569px] text-white max-[500px]:p-4">
-            <CardHeader className="">
-              <Image
-                src={"/img/frame103.svg"}
-                alt="Search Icon"
-                width={423}
-                height={349}
-              />
-            </CardHeader>
-            <CardContent className="h-[220px] flex flex-col justify-between">
-              <h2 className="text-lg text-primary_color">10 February 2022</h2>
-              <h1 className="text-2xl font-bold">Morbi Sodales Tellus Elit, In Blandit Risus Suscipit A</h1>
-              <div className="flex w-full justify-between items-center">
-                <p>Learn More</p>
-                <div className="w-[76px] flex justify-between">
-                  <Image
-                    src={"/icons/like.svg"}
-                    alt="Search Icon"
-                    width={20}
-                    height={20}
-                  />
-                  <Image
-                    src={"/icons/comment.svg"}
-                    alt="Search Icon"
-                    width={20}
-                    height={20}
-                  />
-                  <Image
-                    src={"/icons/share.svg"}
-                    alt="Search Icon"
-                    width={20}
-                    height={20}
-                  />
-                </div>
-              </div>
 
-            </CardContent>
-          </Card>
-        </div>
+
 
       </div>
+
+  
+
     </div>
   );
 }

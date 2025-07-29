@@ -53,6 +53,7 @@ const Item = ({ product }: { product: Food }) => {
                         className="w-full h-[267px] object-cover rounded"
                     />
                 </Link>
+
                 {product?.originalPrice && (
                     <span className="absolute top-2 right-2 bg-primary_color text-white text-xs px-2 py-1 rounded">
                         -{Math.round(((product?.originalPrice - product?.price) / product?.originalPrice) * 100)}%

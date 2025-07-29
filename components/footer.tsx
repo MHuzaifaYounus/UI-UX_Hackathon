@@ -64,8 +64,6 @@ const Footer = () => {
                         <ul className="mt-4 text-gray-400 text-lg space-y-4">
                             <li><Link href={"/about"}>About</Link></li>
                             <li>News</li>
-                            <li><Link href={"/chefs"}>Partners</Link></li>
-                            <li><Link href={"/chefs"}>Team</Link></li>
                             <li><Link href={"/menu"}>Menu</Link></li>
                             <li><Link href={"/contact"}>Contact Us</Link></li>
                         </ul>

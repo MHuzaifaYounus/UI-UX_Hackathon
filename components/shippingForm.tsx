@@ -55,7 +55,6 @@ function ShippingForm() {
             {isSubmit ?
                 <div className="p-4 flex flex-col items-center">
                     <h1 className="text-xl  font-semibold text-green-500">Order Placed Successfully</h1>
-                    <h1 className="text-3xl text-center font-semibold pt-5">Our <span className="text-primary_color">Chef</span> is Cooking for You</h1>
                     <Image
                         src={"/img/cooking.gif"}
                         alt="cooking food gif"
