@@ -6,11 +6,10 @@ import {
   CardContent,
   CardHeader,
 } from "@/components/ui/card"
-import { Button } from "@/components/ui/button";
 import TestimonialCard from "@/components/testimonal";
 import Link from "next/link";
 import MenuSection from "@/components/MenuSection";
-import { client } from "@/sanity/lib/client";
+
 
 const greatVibes = Great_Vibes({ weight: ["400"], subsets: ["latin"] })
 
